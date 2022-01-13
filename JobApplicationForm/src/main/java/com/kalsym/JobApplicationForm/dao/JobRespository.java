@@ -2,14 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.example.JobApplicationForm;
+package com.kalsym.JobApplicationForm.dao;
 
+import com.kalsym.JobApplicationForm.model.Job;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author kalsym
  */
-public interface ApplicantRepository extends JpaRepository<Applicant, Long>{
+@Repository
+public interface JobRespository extends JpaRepository<Job, Long>{
     
 }

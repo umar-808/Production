@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.example.JobApplicationForm;
+package com.kalsym.JobApplicationForm.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @author kalsym
  */
 @Entity
-@Table(name = "applicants")
+@Table(name = "applicant")
 public class Applicant {
 
     @Id
@@ -40,6 +40,20 @@ public class Applicant {
 //    @ManyToOne
 //    @JoinColumn(name = "job_id", nullable = false, referencedColumnName = "id")
 //    private Job job;
+
+    public Applicant() {
+    }
+
+    public Applicant(long id, String name, String email, String phone, String degree, String school, String achievements, int years) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.degree = degree;
+        this.school = school;
+        this.achievements = achievements;
+        this.years = years;
+    }
 
     public long getId() {
         return id;

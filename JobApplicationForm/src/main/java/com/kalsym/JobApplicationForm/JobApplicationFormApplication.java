@@ -1,4 +1,4 @@
-package com.example.JobApplicationForm;
+package com.kalsym.JobApplicationForm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

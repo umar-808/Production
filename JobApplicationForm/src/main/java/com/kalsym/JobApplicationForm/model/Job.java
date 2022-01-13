@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.example.JobApplicationForm;
+package com.kalsym.JobApplicationForm.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author kalsym
  */
 @Entity
-@Table(name = "jobs")
+@Table(name = "job")
 public class Job {
 
     @Id
@@ -34,9 +34,20 @@ public class Job {
     @JoinColumn(name = "department_id", nullable = false, referencedColumnName = "id")
     private Department department;
 
+    @ManyToOne
+    @JoinColumn(name = "location_id", nullable = false, referencedColumnName = "id")
+    private Branch location;
 
-//    @OneToMany(mappedBy = "job", cascade = CascadeType.ALL)
-//    private List<Applicant> applicants;
+    public Job() {
+    }
+
+    public Job(long id, String title, String description, Department department, Branch location) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.department = department;
+        this.location = location;
+    }
 
     public long getId() {
         return id;
@@ -70,11 +81,11 @@ public class Job {
         this.department = department;
     }
 
-//    public List<Applicant> getApplicants() {
-//        return applicants;
-//    }
-//
-//    public void setApplicants(List<Applicant> applicants) {
-//        this.applicants = applicants;
-//    }
+    public Branch getLocation() {
+        return location;
+    }
+
+    public void setLocation(Branch location) {
+        this.location = location;
+    }
 }
