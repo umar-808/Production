@@ -31,7 +31,7 @@ public class ApplicantController {
     private ApplicantService applicantService;
     
     @GetMapping("/applicants")
-    public List<Applicant> getApplicants() {
+    public List<Applicant> getAll() {
         return applicantService.getApplicants();
     }
     

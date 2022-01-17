@@ -29,12 +29,12 @@ public class BranchController {
     private BranchService branchService;
     
     @GetMapping("/branches")
-    public List<Branch> list() {
+    public List<Branch> getAll() {
         return branchService.getBranches();
     }
     
     @GetMapping("branches/name/{name}")
-    public ResponseEntity<Branch> getByName(@PathVariable String name) {
+    public ResponseEntity<Branch> getBranchByName(@PathVariable String name) {
         try {
             return new ResponseEntity<>(branchService.getBranchByName(name), HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -43,7 +43,7 @@ public class BranchController {
     }
     
     @GetMapping("branches/{id}")
-    public ResponseEntity<Branch> get(@PathVariable Long id) {
+    public ResponseEntity<Branch> getBranchById(@PathVariable Long id) {
         try {
             return new ResponseEntity<>(branchService.getBranchById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -52,8 +52,7 @@ public class BranchController {
     }
     
     @PostMapping("/branches")
-    public Branch add(@RequestBody Branch branch) {
-        
+    public Branch saveBranch(@RequestBody Branch branch) {
         return branchService.saveBranch(branch);
     }
     

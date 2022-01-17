@@ -4,7 +4,6 @@
  */
 package com.kalsym.JobApplicationForm.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.Column;
@@ -12,9 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,33 +19,27 @@ import javax.persistence.Table;
  * @author kalsym
  */
 @Entity
-@Table(name = "department")
-public class Department {
+@Table(name = "company")
+public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "branch_id", nullable = false, referencedColumnName = "id")
-    @JsonBackReference(value = "branch")
-    private Branch branch;
+    @OneToMany(mappedBy = "company")
+    @JsonManagedReference(value = "company")
+    private List<Branch> branches;
 
-    @OneToMany(mappedBy = "department")
-    @JsonManagedReference(value = "department")
-    private List<Job> jobs;
-
-    public Department() {
+    public Company() {
     }
 
-    public Department(long id, String name, Branch branch, List<Job> jobs) {
+    public Company(long id, String name, List<Branch> branches) {
         this.id = id;
         this.name = name;
-        this.branch = branch;
-        this.jobs = jobs;
+        this.branches = branches;
     }
 
     public long getId() {
@@ -68,19 +58,11 @@ public class Department {
         this.name = name;
     }
 
-    public Branch getBranch() {
-        return branch;
+    public List<Branch> getBranches() {
+        return branches;
     }
 
-    public void setBranch(Branch branch) {
-        this.branch = branch;
-    }
-
-    public List<Job> getJobs() {
-        return jobs;
-    }
-
-    public void setJobs(List<Job> jobs) {
-        this.jobs = jobs;
+    public void setBranches(List<Branch> branches) {
+        this.branches = branches;
     }
 }

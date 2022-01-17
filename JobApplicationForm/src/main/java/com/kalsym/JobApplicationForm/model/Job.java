@@ -4,6 +4,9 @@
  */
 package com.kalsym.JobApplicationForm.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,21 +36,22 @@ public class Job {
 
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = false, referencedColumnName = "id")
+    @JsonBackReference(value = "department")
     private Department department;
 
-    @ManyToOne
-    @JoinColumn(name = "location_id", nullable = false, referencedColumnName = "id")
-    private Branch location;
+    @OneToMany(mappedBy = "job")
+    @JsonManagedReference(value = "job")
+    private List<Applicant> applicants;
 
     public Job() {
     }
 
-    public Job(long id, String title, String description, Department department, Branch location) {
+    public Job(long id, String title, String description, Department department, List<Applicant> applicants) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.department = department;
-        this.location = location;
+        this.applicants = applicants;
     }
 
     public long getId() {
@@ -81,11 +86,11 @@ public class Job {
         this.department = department;
     }
 
-    public Branch getLocation() {
-        return location;
+    public List<Applicant> getApplicants() {
+        return applicants;
     }
 
-    public void setLocation(Branch location) {
-        this.location = location;
+    public void setApplicants(List<Applicant> applicants) {
+        this.applicants = applicants;
     }
 }

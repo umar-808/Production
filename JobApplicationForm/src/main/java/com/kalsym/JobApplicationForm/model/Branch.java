@@ -4,6 +4,8 @@
  */
 package com.kalsym.JobApplicationForm.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,12 +32,23 @@ public class Branch {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "company_id", nullable = false, referencedColumnName = "id")
+    @JsonBackReference(value = "company")
+    private Company company;
+
+    @OneToMany(mappedBy = "branch")
+    @JsonManagedReference(value = "branch")
+    private List<Department> departments;
+
     public Branch() {
     }
 
-    public Branch(long id, String name) {
+    public Branch(long id, String name, Company company, List<Department> departments) {
         this.id = id;
         this.name = name;
+        this.company = company;
+        this.departments = departments;
     }
 
     public long getId() {
@@ -53,4 +67,19 @@ public class Branch {
         this.name = name;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
+    }
 }
