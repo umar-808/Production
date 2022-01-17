@@ -1,0 +1,6 @@
+<div class="job">
+    <h4><a href="#">{{job.title}}</a></h4>
+    <p *ngIf="job.description.length < 100">{{job.description}}</p>
+    <p *ngIf="job.description.length >= 100">{{job.description+'...'}}</p>
+    <a routerLink="/applicant/" [queryParams]="{jobId:job.id}"> <button class="btn btn-primary">Apply</button></a>
+</div>

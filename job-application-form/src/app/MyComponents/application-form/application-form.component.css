@@ -1,0 +1,22 @@
+.col-sm-6 {
+    margin: auto;
+    background-color: rgb(245, 245, 245);
+}
+
+.form-section {
+    padding-bottom: 1rem;
+}
+
+.form-group {
+    padding-bottom: 0.25rem;
+}
+
+textarea.ng-touched.ng-invalid,
+input.ng-touched.ng-invalid {
+    border: 1px solid red;
+}
+
+.required:after {
+    content:"*";
+    color: red;
+}
