@@ -4,7 +4,6 @@
  */
 package com.kalsym.JobApplicationForm.controller;
 
-import com.kalsym.JobApplicationForm.model.Department;
 import com.kalsym.JobApplicationForm.model.Job;
 import com.kalsym.JobApplicationForm.model.Branch;
 import com.kalsym.JobApplicationForm.service.JobService;
@@ -28,30 +27,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class JobController {
-    
+
     @Autowired
     private JobService jobService;
-    
+
     @GetMapping("/jobs")
     public List<Job> getJobs() {
         return jobService.getJobs();
     }
-    
+
+    @GetMapping("/jobs/{id}/branch")
+    public Branch getbranch(@PathVariable Long id) {
+        return jobService.getDeptId(id);
+    }
+
     @GetMapping("/jobs/{id}")
     public ResponseEntity<Job> getJobById(@PathVariable Long id) {
-        
         try {
             return new ResponseEntity<>(jobService.getJobById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
+
     @PostMapping("/jobs")
     public Job add(@RequestBody Job job) {
         return jobService.saveJob(job);
     }
-    
+
     @DeleteMapping("/jobs/{id}")
     public void deleteJob(@PathVariable Long id) {
         jobService.deleteJobById(id);

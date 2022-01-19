@@ -1,6 +1,13 @@
 <div class="col-md-8">
     <h1 style="text-align: center; margin-bottom: 2rem;">Jobs Details</h1>
-    <h5>{{job.title}}</h5>
+    <div class="row">
+        <div class="col-sm-8">
+            <h5>{{job.title}}</h5>
+        </div>
+        <div class="col-sm-4">
+            <i><p>({{branch.name}})</p></i>
+        </div>
+    </div>
     <p>{{job.description}}</p>
     <a routerLink="/applicant" [queryParams]="{jobId:job.id}"> <button class="btn btn-secondary">Apply</button></a>
 </div>

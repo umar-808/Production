@@ -5,6 +5,7 @@
 package com.kalsym.JobApplicationForm.service;
 
 import com.kalsym.JobApplicationForm.dao.JobRespository;
+import com.kalsym.JobApplicationForm.model.Branch;
 import com.kalsym.JobApplicationForm.model.Job;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,23 +17,27 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class JobService {
-    
+
     @Autowired
     private JobRespository repository;
-    
+
     public Job saveJob(Job job) {
         return repository.save(job);
     }
-    
+
     public List<Job> getJobs() {
         return repository.findAll();
     }
-    
+
     public Job getJobById(long id) {
         return repository.findById(id).get();
     }
-    
+
     public void deleteJobById(long id) {
         repository.deleteById(id);
+    }
+
+    public Branch getDeptId(long id) {
+        return repository.findById(id).get().getDepartment().getBranch();
     }
 }

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
  * @author kalsym
  */
 @Repository
-public interface DepartmentRepository extends JpaRepository<Department, Long>{
-    
+public interface DepartmentRepository extends JpaRepository<Department, Long> {
+
+    public Department findByName(String name);
+
 }

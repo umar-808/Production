@@ -18,4 +18,12 @@ export class JobService {
   getJobById(id): Observable<any> {
     return this.http.get(`${baseUrl}/jobs/${id}`)
   }
+
+  getBranchName(id): Observable<any> {
+    return this.http.get(`${baseUrl}/jobs/${id}/branch`)
+  }
+
+  createJob(job): Observable<any> {
+    return this.http.post(`${baseUrl}/jobs`, job)
+  }
 }

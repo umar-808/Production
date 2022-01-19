@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { JobListingComponent } from './MyComponents/job-listing/job-listing.component';
 import { JobComponent } from './MyComponents/job/job.component';
 import { JobDetailsComponent } from './MyComponents/job-details/job-details.component';
+import { CreateJobFormComponent } from './MyComponents/create-job-form/create-job-form.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { JobDetailsComponent } from './MyComponents/job-details/job-details.comp
     routingComponents,
     JobListingComponent,
     JobComponent,
-    JobDetailsComponent
+    JobDetailsComponent,
+    CreateJobFormComponent
   ],
   imports: [
     BrowserModule,

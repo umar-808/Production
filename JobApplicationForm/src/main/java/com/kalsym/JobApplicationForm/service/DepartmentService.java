@@ -16,24 +16,28 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DepartmentService {
-    
+
     @Autowired
     private DepartmentRepository repository;
-    
+
     public Department saveDepartment(Department department) {
         return repository.save(department);
     }
-    
+
     public List<Department> getDepartments() {
         return repository.findAll();
     }
-    
+
     public Department getDepartmentById(long id) {
         return repository.findById(id).get();
     }
-    
+
+    public Department getDepartmentByName(String name) {
+        return repository.findByName(name);
+    }
+
     public void deleteDepartmentById(long id) {
         repository.deleteById(id);
     }
-    
+
 }

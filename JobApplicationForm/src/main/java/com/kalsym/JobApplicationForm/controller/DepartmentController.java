@@ -24,15 +24,24 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class DepartmentController {
-    
+
     @Autowired
     private DepartmentService departmentService;
-    
+
     @GetMapping("/departments")
     public List<Department> getDepartments() {
         return departmentService.getDepartments();
     }
-    
+
+    @GetMapping("departments/name/{name}")
+    public ResponseEntity<Department> getBranchByName(@PathVariable String name) {
+        try {
+            return new ResponseEntity<>(departmentService.getDepartmentByName(name), HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/departments/{id}")
     public ResponseEntity<Department> getDepartmentById(@PathVariable Long id) {
         try {
@@ -41,12 +50,12 @@ public class DepartmentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
+
     @PostMapping("/departments")
     public Department add(@RequestBody Department department) {
         return departmentService.saveDepartment(department);
     }
-    
+
     @DeleteMapping("/departments/{id}")
     public void deleteDepartment(@PathVariable Long id) {
         departmentService.deleteDepartmentById(id);
