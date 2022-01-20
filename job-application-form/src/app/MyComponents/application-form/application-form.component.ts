@@ -11,6 +11,9 @@ import { ApplicantService } from 'src/app/Services/applicant.service';
 export class ApplicationFormComponent implements OnInit {
 
   id: number
+  fileId: number
+  selectedFile: any
+
   applicant = {
     name: '',
     email: '',
@@ -29,11 +32,18 @@ export class ApplicationFormComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         this.id = params['jobId']
-        console.log(params['jobId'])
       })
   }
 
-  addApplicant(): void {
+  onChange(e) {
+    if (e.target.files[0].size < 2097152) {
+      this.selectedFile = e.target.files[0]
+    } else {
+      this.selectedFile
+    }
+  }
+
+  add() {
     const data = {
       name: this.applicant.name,
       email: this.applicant.email,
@@ -44,6 +54,9 @@ export class ApplicationFormComponent implements OnInit {
       years: this.applicant.years,
       job : {
         id: this.id
+      },
+      file: {
+        id: this.fileId
       }
     }
 
@@ -51,13 +64,19 @@ export class ApplicationFormComponent implements OnInit {
       .subscribe(
         response => {
           this.submitted = true
-          console.log(response)
-        },
-        error => {
-          console.error(error);
         }
-
       )
+  }
+
+  addApplicant(): void {
+    const formData = new FormData()
+    formData.append('file', this.selectedFile, this.selectedFile.name)
+    this.applicantService.uploadFile(formData).subscribe(
+      response => {
+        this.fileId= response.id
+        this.add()
+      }
+    )
   }
 
 }

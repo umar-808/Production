@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -13,5 +13,9 @@ export class ApplicantService {
 
   create(data): Observable<any> {
     return this.http.post(`${baseUrl}/applicants`, data)
+  }
+
+  uploadFile(data): Observable<any> {
+    return this.http.post(`${baseUrl}/files`, data)
   }
 }

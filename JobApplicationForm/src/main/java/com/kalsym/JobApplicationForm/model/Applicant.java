@@ -5,6 +5,7 @@
 package com.kalsym.JobApplicationForm.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -45,10 +47,15 @@ public class Applicant {
     @JsonBackReference(value = "job")
     private Job job;
 
+    @OneToOne
+    @JoinColumn(name = "file_id", nullable = false, referencedColumnName = "id")
+    @JsonBackReference(value = "file")
+    private File file;
+
     public Applicant() {
     }
 
-    public Applicant(long id, String name, String email, String phone, String degree, String school, String achievements, int years) {
+    public Applicant(long id, String name, String email, String phone, String degree, String school, String achievements, int years, Job job, File file) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -57,6 +64,8 @@ public class Applicant {
         this.school = school;
         this.achievements = achievements;
         this.years = years;
+        this.job = job;
+        this.file = file;
     }
 
     public long getId() {
@@ -123,11 +132,19 @@ public class Applicant {
         this.years = years;
     }
 
-//    public Job getJob() {
-//        return job;
-//    }
-//
-//    public void setJob(Job job) {
-//        this.job = job;
-//    }
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
 }

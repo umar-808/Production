@@ -17,6 +17,6 @@ input.ng-touched.ng-invalid {
 }
 
 .required:after {
-    content:"*";
+    content: "*";
     color: red;
 }

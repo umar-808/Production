@@ -43,7 +43,6 @@ export class CreateJobFormComponent implements OnInit {
       .subscribe(
         response => {
           this.submitted = true
-          console.log(response)
         },
         error => {
           console.error(error);
