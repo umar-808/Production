@@ -39,7 +39,7 @@ export class ApplicationFormComponent implements OnInit {
     if (e.target.files[0].size < 2097152) {
       this.selectedFile = e.target.files[0]
     } else {
-      this.selectedFile
+      this.selectedFile = null
     }
   }
 
