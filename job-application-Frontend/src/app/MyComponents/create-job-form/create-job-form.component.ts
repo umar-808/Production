@@ -23,9 +23,10 @@ export class CreateJobFormComponent implements OnInit {
   selectedBranchId: number
   selectedDepartmentId: number
   submitted: boolean
-  constructor( private branchService: BranchService, private jobService: JobService) { }
+  constructor( private branchService: BranchService, private jobService: JobService ) { }
 
   ngOnInit(): void {
+    
     this.branchService.getBranches().subscribe(data => {
       this.branches = data
     })
