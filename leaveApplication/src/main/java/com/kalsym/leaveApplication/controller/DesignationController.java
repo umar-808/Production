@@ -5,10 +5,16 @@
 package com.kalsym.leaveApplication.controller;
 
 import com.kalsym.leaveApplication.model.Designation;
+import com.kalsym.leaveApplication.model.User;
 import com.kalsym.leaveApplication.service.DesignationService;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,8 +34,27 @@ public class DesignationController {
         return service.getDesignations();
     }
 
+    @GetMapping("/designations/{id}")
+    public ResponseEntity<Designation> getDesignationById(@PathVariable int id) {
+        try {
+            return new ResponseEntity<>(service.getDesignationById(id), HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/designations/{designationId}/users")
+    public List<User> getUsers(@PathVariable int designationId) {
+        return service.getDesignationById(designationId).getUsers();
+    }
+
     @PostMapping("/designations")
     public Designation addDesignation(@RequestBody Designation designation) {
         return service.addDesignation(designation);
+    }
+
+    @DeleteMapping("/designations/{id}")
+    public void deleteDesignations(@PathVariable int id) {
+        service.deleteDesignation(id);
     }
 }
