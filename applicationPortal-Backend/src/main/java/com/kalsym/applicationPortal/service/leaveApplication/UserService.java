@@ -20,7 +20,7 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         return repository.findById(id).get();
     }
 
@@ -32,7 +32,7 @@ public class UserService {
         return repository.save(user);
     }
 
-    public void deleteUser(int id) {
+    public void deleteUser(long id) {
         repository.deleteById(id);
     }
 }

@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author kalsym
  */
 @Repository
-public interface UserPasswordRepository extends JpaRepository<UserPassword, Integer>{
+public interface UserPasswordRepository extends JpaRepository<UserPassword, Long>{
     
 }

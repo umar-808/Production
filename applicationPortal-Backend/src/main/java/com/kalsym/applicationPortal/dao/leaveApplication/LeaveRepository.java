@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author kalsym
  */
 @Repository
-public interface LeaveRepository extends JpaRepository<Leave, Integer>{
+public interface LeaveRepository extends JpaRepository<Leave, Long>{
     
 }

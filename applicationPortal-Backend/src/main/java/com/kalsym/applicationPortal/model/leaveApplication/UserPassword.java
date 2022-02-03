@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,9 +25,9 @@ public class UserPassword {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int prefix_id;
+    private long prefix_id;
 
-    @Column(length = 20)
+    @Column(length = 20, nullable = false)
     private String prefix;
 
     @Column(length = 100)
@@ -39,18 +40,18 @@ public class UserPassword {
     public UserPassword() {
     }
 
-    public UserPassword(int prefix_id, String prefix, String password, List<User> users) {
+    public UserPassword(long prefix_id, String prefix, String password, List<User> users) {
         this.prefix_id = prefix_id;
         this.prefix = prefix;
         this.password = password;
         this.users = users;
     }
 
-    public int getPrefix_id() {
+    public long getPrefix_id() {
         return prefix_id;
     }
 
-    public void setPrefix_id(int prefix_id) {
+    public void setPrefix_id(long prefix_id) {
         this.prefix_id = prefix_id;
     }
 

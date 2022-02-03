@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author kalsym
  */
 @Repository
-public interface MigrationRepository extends JpaRepository<Migration, Integer>{
+public interface MigrationRepository extends JpaRepository<Migration, Long>{
     
 }

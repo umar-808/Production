@@ -34,7 +34,7 @@ public class DesignationController {
     }
 
     @GetMapping("/designations/{id}")
-    public ResponseEntity<Designation> getDesignationById(@PathVariable int id) {
+    public ResponseEntity<Designation> getDesignationById(@PathVariable long id) {
         try {
             return new ResponseEntity<>(service.getDesignationById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -43,7 +43,7 @@ public class DesignationController {
     }
 
     @GetMapping("/designations/{designationId}/users")
-    public List<User> getUsers(@PathVariable int designationId) {
+    public List<User> getUsers(@PathVariable long designationId) {
         return service.getDesignationById(designationId).getUsers();
     }
 
@@ -53,7 +53,7 @@ public class DesignationController {
     }
 
     @DeleteMapping("/designations/{id}")
-    public void deleteDesignations(@PathVariable int id) {
+    public void deleteDesignations(@PathVariable long id) {
         service.deleteDesignation(id);
     }
 }

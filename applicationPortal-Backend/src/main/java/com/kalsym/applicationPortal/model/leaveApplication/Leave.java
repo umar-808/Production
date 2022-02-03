@@ -26,7 +26,7 @@ public class Leave implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int empId;
+    private long empId;
 
     @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "empId")
@@ -36,23 +36,24 @@ public class Leave implements Serializable {
     @Column(columnDefinition = "INT(2)")
     private int total;
 
-    @Column(columnDefinition = "INT(2)")
+    @Column(columnDefinition = "INT(2) DEFAULT 0")
     private int sickAvailed;
 
-    @Column(columnDefinition = "INT(2)")
+    @Column(columnDefinition = "INT(2) DEFAULT 0")
     private int otherAvailed;
 
-    @Column(columnDefinition = "INT(2)")
+    @Column(columnDefinition = "INT(2) DEFAULT 0")
     private int annualAvailed;
 
-    @Column(columnDefinition = "INT(2)")
+    @Column(columnDefinition = "INT(2) DEFAULT 0")
     private int annualLeft;
 
     public Leave() {
     }
 
-    public Leave(int empId, int total, int sickAvailed, int otherAvailed, int annualAvailed, int annualLeft) {
+    public Leave(long empId, User user, int total, int sickAvailed, int otherAvailed, int annualAvailed, int annualLeft) {
         this.empId = empId;
+        this.user = user;
         this.total = total;
         this.sickAvailed = sickAvailed;
         this.otherAvailed = otherAvailed;
@@ -60,12 +61,20 @@ public class Leave implements Serializable {
         this.annualLeft = annualLeft;
     }
 
-    public int getEmpId() {
+    public long getEmpId() {
         return empId;
     }
 
-    public void setEmpId(int empId) {
+    public void setEmpId(long empId) {
         this.empId = empId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getTotal() {

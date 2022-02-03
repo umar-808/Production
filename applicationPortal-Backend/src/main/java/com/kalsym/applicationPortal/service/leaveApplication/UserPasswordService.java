@@ -20,7 +20,7 @@ public class UserPasswordService {
     @Autowired
     private UserPasswordRepository repository;
 
-    public UserPassword getUserPasswordById(int id) {
+    public UserPassword getUserPasswordById(long id) {
         return repository.findById(id).get();
     }
 
@@ -32,7 +32,7 @@ public class UserPasswordService {
         return repository.save(userPassword);
     }
 
-    public void deleteUserPassword(int id) {
+    public void deleteUserPassword(long id) {
         repository.deleteById(id);
     }
 }

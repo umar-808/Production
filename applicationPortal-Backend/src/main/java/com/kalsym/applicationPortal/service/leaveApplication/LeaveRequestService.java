@@ -20,7 +20,7 @@ public class LeaveRequestService {
     @Autowired
     private LeaveRequestRepository repository;
 
-    public LeaveRequest getLeaveRequestById(int id) {
+    public LeaveRequest getLeaveRequestById(long id) {
         return repository.findById(id).get();
     }
 
@@ -32,7 +32,7 @@ public class LeaveRequestService {
         return repository.save(leaveRequest);
     }
 
-    public void deleteLeaveRequest(int id) {
+    public void deleteLeaveRequest(long id) {
         repository.deleteById(id);
     }
 }

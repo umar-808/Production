@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.ColumnDefault;
 
 /**
  *
@@ -25,31 +26,33 @@ public class LeaveRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
+    @Column(nullable = false)
     private Date created;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private Date leaveDate;
 
     @Column(name = "return_date")
     private Date returnDate;
 
-    @Column(columnDefinition = "INT(2)")
+    @Column(columnDefinition = "INT(2)", nullable = false)
     private int leaves;
 
-    @Column(length = 500)
+    @Column(length = 500, nullable = false)
     private String reason;
 
-    @Column(columnDefinition = "TINYINT(1)")
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
     private int status;
 
     @Column(length = 500)
     private String comment;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String type;
 
     @Column(length = 200)
@@ -58,13 +61,13 @@ public class LeaveRequest {
     @Column(name = "updated_id")
     private Date updatedAt;
 
-    @Column(columnDefinition = "INT(2)")
-    private int lineManagerId;
+    @Column(nullable = false, columnDefinition = "BIGINT(20) DEFAULT 1")
+    private long lineManagerId;
 
     @Column(length = 100)
     private String attachment;
 
-    @Column(columnDefinition = "INT(4)")
+    @Column(columnDefinition = "INT(4) DEFAULT 92", nullable = false)
     private int countryCode;
 
     @Column(name = "time_period", length = 10)
@@ -78,7 +81,7 @@ public class LeaveRequest {
     public LeaveRequest() {
     }
 
-    public LeaveRequest(int id, Date created, String name, Date leaveDate, Date returnDate, int leaves, String reason, int status, String comment, String type, String adminComment, Date updatedAt, int lineManagerId, String attachment, int countryCode, String timePeriod, User user) {
+    public LeaveRequest(long id, Date created, String name, Date leaveDate, Date returnDate, int leaves, String reason, int status, String comment, String type, String adminComment, Date updatedAt, long lineManagerId, String attachment, int countryCode, String timePeriod, User user) {
         this.id = id;
         this.created = created;
         this.name = name;
@@ -98,11 +101,11 @@ public class LeaveRequest {
         this.user = user;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -194,11 +197,11 @@ public class LeaveRequest {
         this.updatedAt = updatedAt;
     }
 
-    public int getLineManagerId() {
+    public long getLineManagerId() {
         return lineManagerId;
     }
 
-    public void setLineManagerId(int lineManagerId) {
+    public void setLineManagerId(long lineManagerId) {
         this.lineManagerId = lineManagerId;
     }
 
@@ -233,4 +236,5 @@ public class LeaveRequest {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

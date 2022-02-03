@@ -35,7 +35,7 @@ public class UserPasswordController {
     }
 
     @GetMapping("/user-passwords/{id}")
-    public ResponseEntity<UserPassword> getDesignationById(@PathVariable int id) {
+    public ResponseEntity<UserPassword> getDesignationById(@PathVariable long id) {
         try {
             return new ResponseEntity<>(service.getUserPasswordById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -44,7 +44,7 @@ public class UserPasswordController {
     }
 
     @GetMapping("/user-passwords/{userPasswordId}/users")
-    public List<User> getUsers(@PathVariable int userPasswordId) {
+    public List<User> getUsers(@PathVariable long userPasswordId) {
         return service.getUserPasswordById(userPasswordId).getUsers();
     }
 
@@ -54,7 +54,7 @@ public class UserPasswordController {
     }
 
     @DeleteMapping("/user-passwords/{id}")
-    public void deleteUserPassword(@PathVariable int id) {
+    public void deleteUserPassword(@PathVariable long id) {
         service.deleteUserPassword(id);
     }
 }

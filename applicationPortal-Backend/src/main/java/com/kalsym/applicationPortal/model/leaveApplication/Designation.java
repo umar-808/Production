@@ -28,15 +28,14 @@ public class Designation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "INT(2)")
-    private int id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "deptId", nullable = false, referencedColumnName = "id")
     @JsonBackReference(value = "department")
     private Department department;
 
-    @Column(length = 30)
+    @Column(length = 30, nullable = false)
     private String designation;
 
     @OneToMany(mappedBy = "designation")
@@ -46,18 +45,18 @@ public class Designation {
     public Designation() {
     }
 
-    public Designation(int id, Department department, String designation, List<User> users) {
+    public Designation(long id, Department department, String designation, List<User> users) {
         this.id = id;
         this.department = department;
         this.designation = designation;
         this.users = users;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

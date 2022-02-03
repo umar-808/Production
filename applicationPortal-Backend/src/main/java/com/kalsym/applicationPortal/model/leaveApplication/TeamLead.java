@@ -28,14 +28,14 @@ public class TeamLead {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "id")
     @MapsId
     private User user;
 
-    @Column(length = 30)
+    @Column(length = 30, nullable = false)
     private String name;
 
     @ManyToOne
@@ -46,18 +46,27 @@ public class TeamLead {
     public TeamLead() {
     }
 
-    public TeamLead(int id, String name, Department department) {
+    public TeamLead(long id, User user, String name, Department department) {
         this.id = id;
+        this.user = user;
         this.name = name;
         this.department = department;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {
@@ -75,4 +84,5 @@ public class TeamLead {
     public void setDepartment(Department department) {
         this.department = department;
     }
+
 }

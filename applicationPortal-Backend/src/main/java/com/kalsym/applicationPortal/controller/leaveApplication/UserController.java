@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> getDesignationById(@PathVariable int id) {
+    public ResponseEntity<User> getDesignationById(@PathVariable long id) {
         try {
             return new ResponseEntity<>(service.getUserById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}/leave-requests")
-    public List<LeaveRequest> getLeaveRequests(@PathVariable int userId) {
+    public List<LeaveRequest> getLeaveRequests(@PathVariable long userId) {
         return service.getUserById(userId).getLeaveRequests();
     }
 
@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}")
-    public void deleteUser(@PathVariable int id) {
+    public void deleteUser(@PathVariable long id) {
         service.deleteUser(id);
     }
 }

@@ -34,7 +34,7 @@ public class LeaveController {
     }
 
     @GetMapping("/leaves/{id}")
-    public ResponseEntity<Leave> getLeaveById(@PathVariable int id) {
+    public ResponseEntity<Leave> getLeaveById(@PathVariable long id) {
         try {
             return new ResponseEntity<>(service.getLeaveById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -48,7 +48,7 @@ public class LeaveController {
     }
 
     @DeleteMapping("/leaves/{id}")
-    public void deleteLeaves(@PathVariable int id) {
+    public void deleteLeaves(@PathVariable long id) {
         service.deleteLeave(id);
     }
 }

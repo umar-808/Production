@@ -20,7 +20,7 @@ public class TeamLeadService {
     @Autowired
     private TeamLeadRepository repository;
 
-    public TeamLead getTeamLeadById(int id) {
+    public TeamLead getTeamLeadById(long id) {
         return repository.findById(id).get();
     }
 
@@ -32,7 +32,7 @@ public class TeamLeadService {
         return repository.save(teamLead);
     }
 
-    public void deleteTeamLead(int id) {
+    public void deleteTeamLead(long id) {
         repository.deleteById(id);
     }
 }

@@ -20,7 +20,7 @@ public class DesignationService {
     @Autowired
     private DesignationRepository repository;
 
-    public Designation getDesignationById(int id) {
+    public Designation getDesignationById(long id) {
         return repository.findById(id).get();
     }
 
@@ -32,7 +32,7 @@ public class DesignationService {
         return repository.save(designation);
     }
 
-    public void deleteDesignation(int id) {
+    public void deleteDesignation(long id) {
         repository.deleteById(id);
     }
 }

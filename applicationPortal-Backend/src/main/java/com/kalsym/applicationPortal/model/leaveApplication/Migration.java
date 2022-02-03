@@ -4,6 +4,7 @@
  */
 package com.kalsym.applicationPortal.model.leaveApplication;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,25 +21,26 @@ public class Migration {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
+    @Column(nullable = false)
     private String migration;
     private int batch;
 
     public Migration() {
     }
 
-    public Migration(int id, String migration, int batch) {
+    public Migration(long id, String migration, int batch) {
         this.id = id;
         this.migration = migration;
         this.batch = batch;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

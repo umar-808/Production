@@ -31,7 +31,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private TeamLead teamLead;
@@ -39,23 +39,25 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Leave leave;
 
-    @Column(length = 765)
+    @Column(length = 765, nullable = false)
     private String name;
 
-    @Column(length = 765)
+    @Column(length = 765, nullable = false)
     private String username;
 
-    @Column(length = 765)
+    @Column(length = 765, nullable = false)
     private String password;
 
-    @Column(name = "access_type")
+    @Column(name = "access_type", nullable = false)
     private int accessType;
+
+    @Column(columnDefinition = "INT(11) DEFAULT 1", nullable = false)
     private int status;
 
     @Column(name = "remember_token", length = 300)
     private String rememberToken;
 
-    @Column(name = "is_change_pass", columnDefinition = "TINYINT(1)")
+    @Column(name = "is_change_pass", columnDefinition = "TINYINT(1) DEFAULT FALSE", nullable = false)
     private boolean isChangePass;
 
     @Column(name = "created_at")
@@ -64,21 +66,22 @@ public class User {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @Column(name = "wrong_pass_count", columnDefinition = "TINYINT(1)")
+    @Column(name = "wrong_pass_count", columnDefinition = "TINYINT(1) DEFAULT FALSE")
     private boolean wrongPassCount;
 
-    @Column(name = "is_lock", columnDefinition = "TINYINT(1)")
+    @Column(name = "is_lock", columnDefinition = "TINYINT(1) DEFAULT FALSE")
     private boolean isLock;
 
     @Column(name = "lock_expired")
     private Timestamp lockExpired;
 
-    @Column(length = 40)
+    @Column(length = 40, nullable = false)
     private String email;
 
-    private int tlId;
+    @Column(nullable = true)
+    private long tlId;
 
-    @Column(columnDefinition = "INT(2)")
+    @Column(columnDefinition = "INT(2) DEFAULT 92", nullable = false)
     private int countryCode;
 
     @ManyToOne
@@ -103,7 +106,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String name, String username, String password, int accessType, int status, String rememberToken, boolean isChangePass, Timestamp createdAt, Timestamp updatedAt, boolean wrongPassCount, boolean isLock, Timestamp lockExpired, String email, int tlId, int countryCode, UserPassword userPassword, Designation designation, Department department, List<LeaveRequest> leaveRequests) {
+    public User(long id, String name, String username, String password, int accessType, int status, String rememberToken, boolean isChangePass, Timestamp createdAt, Timestamp updatedAt, boolean wrongPassCount, boolean isLock, Timestamp lockExpired, String email, long tlId, int countryCode, UserPassword userPassword, Designation designation, Department department, List<LeaveRequest> leaveRequests) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -126,11 +129,11 @@ public class User {
         this.leaveRequests = leaveRequests;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -238,11 +241,11 @@ public class User {
         this.email = email;
     }
 
-    public int getTlId() {
+    public long getTlId() {
         return tlId;
     }
 
-    public void setTlId(int tlId) {
+    public void setTlId(long tlId) {
         this.tlId = tlId;
     }
 

@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author kalsym
  */
 @Repository
-public interface DesignationRepository extends JpaRepository<Designation, Integer>{
+public interface DesignationRepository extends JpaRepository<Designation, Long>{
     
 }

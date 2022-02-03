@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author kalsym
  */
 @Repository
-public interface TeamLeadRepository extends JpaRepository<TeamLead, Integer>{
+public interface TeamLeadRepository extends JpaRepository<TeamLead, Long>{
     
 }

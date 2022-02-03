@@ -34,7 +34,7 @@ public class TeamLeadController {
     }
 
     @GetMapping("/team-leads/{id}")
-    public ResponseEntity<TeamLead> getDesignationById(@PathVariable int id) {
+    public ResponseEntity<TeamLead> getDesignationById(@PathVariable long id) {
         try {
             return new ResponseEntity<>(service.getTeamLeadById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -48,7 +48,7 @@ public class TeamLeadController {
     }
 
     @DeleteMapping("/team-leads/{id}")
-    public void deleteTeamLead(@PathVariable int id) {
+    public void deleteTeamLead(@PathVariable long id) {
         service.deleteTeamLead(id);
     }
 }

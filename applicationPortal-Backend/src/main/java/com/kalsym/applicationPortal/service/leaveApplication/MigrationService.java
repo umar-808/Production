@@ -20,7 +20,7 @@ public class MigrationService {
     @Autowired
     private MigrationRepository repository;
 
-    public Migration getMigrationById(int id) {
+    public Migration getMigrationById(long id) {
         return repository.findById(id).get();
     }
 
@@ -32,7 +32,7 @@ public class MigrationService {
         return repository.save(migration);
     }
 
-    public void deleteMigration(int id) {
+    public void deleteMigration(long id) {
         repository.deleteById(id);
     }
 }

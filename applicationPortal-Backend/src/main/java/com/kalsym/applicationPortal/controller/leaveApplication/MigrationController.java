@@ -34,7 +34,7 @@ public class MigrationController {
     }
 
     @GetMapping("/migrations/{id}")
-    public ResponseEntity<Migration> getDesignationById(@PathVariable int id) {
+    public ResponseEntity<Migration> getDesignationById(@PathVariable long id) {
         try {
             return new ResponseEntity<>(service.getMigrationById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -48,7 +48,7 @@ public class MigrationController {
     }
 
     @DeleteMapping("/migrations/{id}")
-    public void deleteMigration(@PathVariable int id) {
+    public void deleteMigration(@PathVariable long id) {
         service.deleteMigration(id);
     }
 }
