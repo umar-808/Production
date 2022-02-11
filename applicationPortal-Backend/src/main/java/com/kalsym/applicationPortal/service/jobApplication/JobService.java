@@ -37,7 +37,7 @@ public class JobService {
         repository.deleteById(id);
     }
 
-    public Branch getDeptId(long id) {
+    public Branch getBranchId(long id) {
         return repository.findById(id).get().getDepartment().getBranch();
     }
 }

@@ -58,7 +58,7 @@ public class LeaveRequest {
     @Column(length = 200)
     private String adminComment;
 
-    @Column(name = "updated_id")
+    @Column(name = "updated_at")
     private Date updatedAt;
 
     @Column(nullable = false, columnDefinition = "BIGINT(20) DEFAULT 1")

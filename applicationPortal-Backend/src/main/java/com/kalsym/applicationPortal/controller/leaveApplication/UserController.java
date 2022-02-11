@@ -4,6 +4,8 @@
  */
 package com.kalsym.applicationPortal.controller.leaveApplication;
 
+import com.kalsym.applicationPortal.model.Department;
+import com.kalsym.applicationPortal.model.leaveApplication.Designation;
 import com.kalsym.applicationPortal.model.leaveApplication.LeaveRequest;
 import com.kalsym.applicationPortal.model.leaveApplication.User;
 import com.kalsym.applicationPortal.service.leaveApplication.UserService;
@@ -12,6 +14,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author kalsym
  */
 @RestController
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
@@ -46,6 +50,16 @@ public class UserController {
     @GetMapping("/users/{userId}/leave-requests")
     public List<LeaveRequest> getLeaveRequests(@PathVariable long userId) {
         return service.getUserById(userId).getLeaveRequests();
+    }
+
+    @GetMapping("/users/{userId}/designation")
+    public Designation getDesignation(@PathVariable long userId) {
+        return service.getUserById(userId).getDesignation();
+    }
+
+    @GetMapping("/users/{userId}/department")
+    public Department getDepartment(@PathVariable long userId) {
+        return service.getUserById(userId).getDepartment();
     }
 
     @PostMapping("/users")

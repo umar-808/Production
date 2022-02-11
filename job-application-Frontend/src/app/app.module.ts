@@ -13,6 +13,17 @@ import { ApplicationFormComponent } from './MyComponents/application-form/applic
 import { LoginFormComponent } from './MyComponents/login-form/login-form.component';
 import { AuthGuard } from './auth.guard';
 import { LoginService } from './Services/login.service';
+import { FooterComponent } from './MyComponents/footer/footer.component';
+import { PasswordResetComponent } from './MyComponents/password-reset/password-reset.component';
+import { ApplyLeaveComponent } from './MyComponents/apply-leave/apply-leave.component';
+import { LeavesRecordComponent } from './MyComponents/leaves-record/leaves-record.component';
+import { SidebarComponent } from './MyComponents/sidebar/sidebar.component';
+import { HeaderComponent } from './MyComponents/header/header.component';
+import { UsersComponent } from './MyComponents/users/users.component';
+import { ManagersComponent } from './MyComponents/managers/managers.component';
+import { LeaveRequestsComponent } from './MyComponents/leave-requests/leave-requests.component';
+import { MyInceptorInterceptor } from './Services/my-inceptor.interceptor';
+import { HomepageComponent } from './MyComponents/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +33,17 @@ import { LoginService } from './Services/login.service';
     JobDetailsComponent,
     CreateJobFormComponent,
     ApplicationFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    FooterComponent,
+    PasswordResetComponent,
+    SidebarComponent,
+    HeaderComponent,
+    ApplyLeaveComponent,
+    LeavesRecordComponent,
+    UsersComponent,
+    ManagersComponent,
+    LeaveRequestsComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +51,11 @@ import { LoginService } from './Services/login.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ AuthGuard, LoginService],
+  providers: [AuthGuard, LoginService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: MyInceptorInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

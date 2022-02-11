@@ -1,13 +1,15 @@
-<div class="col-md-8">
-    <h1 style="text-align: center; margin-bottom: 2rem;">Jobs Details</h1>
-    <div class="row">
-        <div class="col-sm-10">
-            <h5>{{job.title}}</h5>
+<div class="container">
+    <div class="col-md-8">
+        <h1 style="text-align: center; margin-bottom: 2rem;">Jobs Details</h1>
+        <div class="row">
+            <div class="col-sm-10">
+                <h5>{{job.title}}</h5>
+            </div>
+            <div class="col-sm-2">
+                <i><p>({{branch.name}})</p></i>
+            </div>
         </div>
-        <div class="col-sm-2">
-            <i><p>({{branch.name}})</p></i>
-        </div>
+        <p>{{job.description}}</p>
+        <a routerLink="/applicant" [queryParams]="{jobId:job.id}"> <button class="btn btn-secondary">Apply</button></a>
     </div>
-    <p>{{job.description}}</p>
-    <a routerLink="/applicant" [queryParams]="{jobId:job.id}"> <button class="btn btn-secondary">Apply</button></a>
 </div>

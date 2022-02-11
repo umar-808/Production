@@ -1,0 +1,10 @@
+.card {
+    font-family: "Helvetica Neue", Helvetica, Arial, serif;
+    box-shadow: 0 0 5px 2px rgb(240, 240, 240);
+}
+
+.card-header {
+    background-color: #3097d1;
+    color: #fff;
+    text-align: center;
+}

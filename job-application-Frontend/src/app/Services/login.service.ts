@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from '../Models/user';
+import { Login } from '../Models/login';
 
 const baseUrl = 'http://localhost:8080'
 
@@ -10,17 +11,30 @@ const baseUrl = 'http://localhost:8080'
 })
 export class LoginService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  login(user: User): Observable<any> {
-    return this.http.post(`${baseUrl}/login`, user);
+  login(user: Login): Observable<any> {
+    return this.http.post(`${baseUrl}/authenticate`, user);
   }
 
   isLoggedIn() {
-    return !!sessionStorage.getItem('token')
+    return !!localStorage.getItem('token')
   }
 
   getToken() {
-    return sessionStorage.getItem('token')
+    return localStorage.getItem('token')
+  }
+
+  getCurrentUser(): Observable<any>{
+    return this.http.get(`${baseUrl}/current-user`)
+  }
+
+  validate(): Observable<any> {
+    return this.http.get(`${baseUrl}/validate`)
+  }
+
+  logout() {
+    localStorage.clear()
+    this.router.navigate(['/login'])
   }
 }

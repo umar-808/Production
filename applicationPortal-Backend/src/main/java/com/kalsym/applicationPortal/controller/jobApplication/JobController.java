@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author kalsym
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class JobController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class JobController {
 
     @GetMapping("/jobs/{id}/branch")
     public Branch getbranch(@PathVariable Long id) {
-        return jobService.getDeptId(id);
+        return jobService.getBranchId(id);
     }
 
     @GetMapping("/jobs/{id}")

@@ -24,6 +24,10 @@ public class UserService {
         return repository.findById(id).get();
     }
 
+    public User getUserByUsername(String username) {
+        return repository.findByUsername(username);
+    }
+
     public List<User> getUsers() {
         return repository.findAll();
     }

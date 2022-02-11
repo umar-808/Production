@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author kalsym
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 public class AdminController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class AdminController {
 
     @PostMapping("/login")
     public ResponseEntity<Token> login(@RequestBody Admin admin) {
-        Admin admin1 = userService.findByUsername(admin);
+        Admin admin1 = userService.findByUsername(admin.getUsername());
         if (admin1.getPassword().equals(admin.getPassword())) {
             token = generateRandomPassword(30);
             return new ResponseEntity<>(new Token(token), HttpStatus.OK);

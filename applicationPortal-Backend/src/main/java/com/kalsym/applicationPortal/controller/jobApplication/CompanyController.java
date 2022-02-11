@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author kalsym
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 public class CompanyController {
 
     @Autowired

@@ -1,0 +1,110 @@
+<div class="card main">
+    <b><div class="card-header">Leave Application Form</div></b>
+    <div class="card-body text-col">
+        <form #applyLeave="ngForm">
+            <div class="form-section">
+                <div class="heading">
+                    AM / PM/ Full Day *
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="time" id="AM">
+                    <label class="form-check-label" for="AM">
+                        AM
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="time" id="PM">
+                    <label class="form-check-label" for="PM">
+                        PM
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="time" id="fullDay" checked>
+                    <label class="form-check-label" for="fullDay">
+                        Full Day
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="heading">
+                            Leave Date
+                        </div>
+                        <input type="date" style="width: 100%; padding: 0.25rem;" required>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="heading">
+                            Return Date
+                        </div>
+                        <input type="date" style="width: 100%; padding: 0.25rem;" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="heading">
+                    Type of Leave *
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="type" id="annual" checked>
+                    <label class="form-check-label" for="annual">
+                        Annual leave
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="type" id="nuclearFamily">
+                    <label class="form-check-label" for="nuclearFamily">
+                        Leave on Compassionate Grounds (Nuclear family)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="type" id="sick">
+                    <label class="form-check-label" for="sick">
+                        Sick leave (Illness or Injury)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="type" id="jury">
+                    <label class="form-check-label" for="jury">
+                        Jury duty or legal leave
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="type" id="withoutPay">
+                    <label class="form-check-label" for="withoutPay">
+                        Leave without pay
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="type" id="other">
+                    <label class="form-check-label" for="other">
+                        Other: <input id="otherLeave" name="otherLeave" type="text">
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="heading">
+                    <label for="reason">Reason</label>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control" id="reason" name="reason">
+                </textarea></div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group">
+                    <div class="heading">Resume (Maximum Size: 2MB)</div>
+                    <input type="file" class="form-control" id="file" name="file" required>
+                </div>
+            </div>
+
+            <button [disabled]="!applyLeave.valid" type="submit" class="btn btn-primary">
+                Submit
+            </button>
+
+        </form>
+
+    </div>

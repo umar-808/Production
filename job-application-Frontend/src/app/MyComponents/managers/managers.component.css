@@ -1,0 +1,19 @@
+.card {
+    font-family: "Helvetica Neue", Helvetica, Arial, serif;
+    box-shadow: 0 0 5px 2px rgb(240, 240, 240);
+}
+
+.card-header {
+    background-color: #3097d1;
+    /* margin-bottom: 1rem; */
+    color: #fff;
+    text-align: center;
+}
+
+.table {
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: rgb(234, 244, 253);
+}

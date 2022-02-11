@@ -1,40 +1,42 @@
-<h1 class="text-center mb-3">Job Creation Form</h1>
-<div class="col-sm-6 needs-validation">
-    <form #jobForm="ngForm" (ngSubmit)="createJob()" *ngIf="!submitted" style="padding: 1rem;">
-        <div class="form-group  ">
-            <label class="required" for="title">Title</label>
-            <input type="text" [(ngModel)]="job.title" class="form-control" id="title" name="title" placeholder="Title" #name="ngModel" required>
-            <span [hidden]="name.valid || !name.touched" style="color: red;">
+<div class="container">
+    <h1 class="text-center mb-3">Job Creation Form</h1>
+    <div class="col-sm-6 needs-validation">
+        <form #jobForm="ngForm" (ngSubmit)="createJob()" *ngIf="!submitted" style="padding: 1rem;">
+            <div class="form-group  ">
+                <label class="required" for="title">Title</label>
+                <input type="text" [(ngModel)]="job.title" class="form-control" id="title" name="title" placeholder="Title" #name="ngModel" required>
+                <span [hidden]="name.valid || !name.touched" style="color: red;">
                 Title is required
             </span>
-        </div>
-        <div class="form-group">
-            <label class="required" for="description">Description</label>
-            <textarea [(ngModel)]="job.description" class="form-control" id="description" name="description" placeholder="Description" #description="ngModel" required>
+            </div>
+            <div class="form-group">
+                <label class="required" for="description">Description</label>
+                <textarea [(ngModel)]="job.description" class="form-control" id="description" name="description" placeholder="Description" #description="ngModel" required>
             </textarea>
-            <span [hidden]="description.valid || !description.touched" style="color: red;">
+                <span [hidden]="description.valid || !description.touched" style="color: red;">
                 Description is required
             </span>
-        </div>
-        <div class="row" style="margin-bottom: 1rem;">
-            <div class="col">
-                <label for="location" class="required">Location</label>
-                <select id="location" name="location" class="form-select" [(ngModel)]="selectedBranchId" (change)="onChange($event.target)" required>
-                    <option *ngFor="let branch of branches; index as i" [selected]="" [value]="branch.id">{{branch.name}}</option>
-                </select>
             </div>
-            <div class="col">
-                <label for="department" class="required">Department</label>
-                <select id="department" name="department" class="form-select" [(ngModel)]="selectedDepartmentId" required>
-                    <option *ngFor="let dep of departments" [value]="dep.id">{{dep.name}}</option>
-                </select>
+            <div class="row" style="margin-bottom: 1rem;">
+                <div class="col">
+                    <label for="location" class="required">Location</label>
+                    <select id="location" name="location" class="form-select" [(ngModel)]="selectedBranchId" (change)="onChange($event.target)" required>
+                        <option *ngFor="let branch of branches; index as i" [selected]="" [value]="branch.id">{{branch.name}}</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="department" class="required">Department</label>
+                    <select id="department" name="department" class="form-select" [(ngModel)]="selectedDepartmentId" required>
+                        <option *ngFor="let dep of departments" [value]="dep.id">{{dep.name}}</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <button type="submit" [disabled]="!jobForm.valid" class="btn btn-secondary">Submit</button>
-    </form>
+            <button type="submit" [disabled]="!jobForm.valid" class="btn btn-secondary">Submit</button>
+        </form>
 
-    <div *ngIf="submitted" style="padding: 1rem;">
-        <h4>Jop Created Successfully</h4>
-        <a routerLink="/jobs"><button class="btn btn-secondary">Go to Jobs</button></a>
+        <div *ngIf="submitted" style="padding: 1rem;">
+            <h4>Jop Created Successfully</h4>
+            <a routerLink="/jobs"><button class="btn btn-secondary">Go to Jobs</button></a>
+        </div>
     </div>
 </div>

@@ -4,6 +4,7 @@
  */
 package com.kalsym.applicationPortal.controller.leaveApplication;
 
+import com.kalsym.applicationPortal.model.Department;
 import com.kalsym.applicationPortal.model.leaveApplication.TeamLead;
 import com.kalsym.applicationPortal.service.leaveApplication.TeamLeadService;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author kalsym
  */
 @RestController
+@CrossOrigin("*")
 public class TeamLeadController {
 
     @Autowired
@@ -40,6 +43,11 @@ public class TeamLeadController {
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/team-leads/{teamLeadId}/department")
+    public Department getDepartment(@PathVariable long teamLeadId) {
+        return service.getTeamLeadById(teamLeadId).getDepartment();
     }
 
     @PostMapping("team-leads")

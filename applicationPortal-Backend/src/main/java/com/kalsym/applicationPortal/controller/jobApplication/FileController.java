@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author kalsym
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 public class FileController {
 
     @Autowired

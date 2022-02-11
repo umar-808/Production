@@ -19,7 +19,7 @@ public class AdminService {
     @Autowired
     private AdminRepository repository;
 
-    public Admin findByUsername(Admin admin) {
-        return repository.findByUsername(admin.getUsername());
+    public Admin findByUsername(String username) {
+        return repository.findByUsername(username);
     }
 }
