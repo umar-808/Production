@@ -46,7 +46,10 @@ export class UsersComponent implements OnInit {
         this.loginService.logout()
       }
     )
+  }
 
+  deleteUser(user, userId) {
+    
   }
 
 }

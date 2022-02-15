@@ -1,5 +1,50 @@
 <div class="card">
     <b><div class="card-header">Leaves Requests</div></b>
     <div class="card-body text-col">
+        <p *ngIf="leaveRequests.length<=0" class="text-center text-col">No record found</p>
+        <div class="table-responsive">
+            <table *ngIf="leaveRequests.length>0" class="table table-bordered col-md-9">
+                <thead class="heading text-col ">
+                    <tr class="text-center">
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Time Period</th>
+                        <th>Leave Date</th>
+                        <th>Return Date</th>
+                        <th>No. of Leaves</th>
+                        <th>Reason</th>
+                        <th>Type</th>
+                        <th>Admin Comment</th>
+                        <th>Status</th>
+                        <th>Attachement</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class=" text-col">
+                    <tr *ngFor="let leaveRequest of leaveRequests; let i=index ">
+                        <td>{{leaveRequest.created}}</td>
+                        <td>{{leaveRequest.name}}</td>
+                        <td>{{leaveRequest.timePeriod}}</td>
+                        <td>{{leaveRequest.leaveDate}}</td>
+                        <td>{{leaveRequest.returnDate}}</td>
+                        <td>{{leaveRequest.leaves}}</td>
+                        <td>{{leaveRequest.reason}}</td>
+                        <td>{{leaveRequest.type}}</td>
+                        <td>{{leaveRequest.adminComment}}</td>
+                        <td *ngIf="leaveRequest.status==0" style="color: red;">Pending</td>
+                        <td *ngIf="leaveRequest.status==1" style="color: green;">Approved by HOD</td>
+                        <td *ngIf="leaveRequest.status==2" style="color: green;">Approved by Admin</td>
+                        <td *ngIf="leaveRequest.status==3" style="color: green;">Disapproved by HOD</td>
+                        <td *ngIf="leaveRequest.status==4" style="color: green;">Disapproved by Admin</td>
+                        <td>{{leaveRequest.attachment}}</td>
+                        <td *ngIf="leaveRequest.status===0" class="text-center">
+                            <button class="btn btn-primary btn-sm">Approve</button>
+                            <button class="btn btn-danger btn-sm">Disapprove</button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
     </div>
 </div>

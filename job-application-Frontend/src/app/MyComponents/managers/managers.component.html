@@ -2,24 +2,26 @@
     <b><div class="card-header">Managers</div></b>
     <div class="card-body text-col">
         <p *ngIf="managers.length<=0" class="text-center text-col">No record found</p>
-        <table *ngIf="managers.length>0" class="table col-md-9">
-            <thead class="heading text-col ">
-                <tr class="text-center">
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody class=" text-col">
-                <tr *ngFor="let manager of managers; let i=index ">
-                    <td>{{manager.name}}</td>
-                    <td class="text-center">{{manager.department.name}}</td>
-                    <td class="text-center">
-                        <button class="btn btn-danger btn-sm" (click)="deleteManager(manager, manager.id)">Remove</button>
-                    </td>
-                </tr>
-            </tbody>
+        <div class="table-responsive">
+            <table *ngIf="managers.length>0" class="table table-bordered col-md-9">
+                <thead class="heading text-col ">
+                    <tr class="text-center">
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class=" text-col">
+                    <tr *ngFor="let manager of managers; let i=index ">
+                        <td>{{manager.name}}</td>
+                        <td class="text-center">{{manager.department.name}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-danger btn-sm" (click)="deleteManager(manager, manager.id)">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
 
-        </table>
+            </table>
+        </div>
     </div>
 </div>

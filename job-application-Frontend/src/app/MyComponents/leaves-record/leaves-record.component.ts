@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Leave } from 'src/app/Models/leave';
+import { LeaveRecord } from 'src/app/Models/leave-record';
 import { DataService } from 'src/app/Services/data.service';
 import { LoginService } from 'src/app/Services/login.service';
 
@@ -12,18 +12,18 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class LeavesRecordComponent implements OnInit {
 
-  leaves: Leave[]
+  leavesRecord: LeaveRecord[]
 
   constructor( private dataService: DataService, private titleService: Title, private loginService: LoginService, private router: Router) {
     this.titleService.setTitle("Leaves Record")
   }
 
   ngOnInit(): void {
-    this.dataService.getLeaves().subscribe(
+    this.dataService.getLeavesRecord().subscribe(
       res => {
-        this.leaves = res
+        this.leavesRecord = res
       },
-      err => {
+      err => {  
         console.log(err)
       }
     )

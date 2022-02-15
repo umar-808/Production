@@ -1,36 +1,38 @@
 <div class="card">
     <b><div class="card-header">Leaves Record</div></b>
     <div class="card-body text-col">
-        <p *ngIf="leaves.length<=0" class="text-center text-col">No record found</p>
-        <table *ngIf="leaves.length>0" class="table col-md-9">
-            <thead class="heading text-col ">
-                <tr class="text-center">
-                    <th rowspan="2">Name</th>
-                    <th colspan="4">Leaves Availed</th>
-                    <th rowspan="2">Annual Leaves Left</th>
-                    <th rowspan="2">Leave History</th>
-                </tr>
-                <tr class="text-center">
-                    <th>Total</th>
-                    <th>Sick</th>
-                    <th>Annual</th>
-                    <th>Others</th>
-                </tr>
-            </thead>
-            <tbody class=" text-col">
-                <tr *ngFor="let leave of leaves; let i=index ">
-                    <td>{{leave.user.name}}</td>
-                    <td class="text-center">{{leave.total}}</td>
-                    <td class="text-center">{{leave.sickAvailed}}</td>
-                    <td class="text-center">{{leave.annualAvailed}}</td>
-                    <td class="text-center">{{leave.otherAvailed}}</td>
-                    <td class="text-center">{{leave.annualLeft}}</td>
-                    <td class="text-center">
-                        <button class="btn btn-secondary btn-sm">View</button>
-                    </td>
-                </tr>
-            </tbody>
+        <p *ngIf="leavesRecord.length<=0" class="text-center text-col">No record found</p>
+        <div class="table-responsive">
+            <table *ngIf="leavesRecord.length>0" class="table table-bordered col-md-9">
+                <thead class="heading text-col ">
+                    <tr class="text-center">
+                        <th rowspan="2">Name</th>
+                        <th colspan="4">Leaves Availed</th>
+                        <th rowspan="2">Annual Leaves Left</th>
+                        <th rowspan="2">Leave History</th>
+                    </tr>
+                    <tr class="text-center">
+                        <th>Total</th>
+                        <th>Sick</th>
+                        <th>Annual</th>
+                        <th>Others</th>
+                    </tr>
+                </thead>
+                <tbody class=" text-col">
+                    <tr *ngFor="let leaveRecord of leavesRecord; let i=index ">
+                        <td>{{leaveRecord.user.name}}</td>
+                        <td class="text-center">{{leaveRecord.sickAvailed+leaveRecord.annualAvailed+leaveRecord.otherAvailed}}</td>
+                        <td class="text-center">{{leaveRecord.sickAvailed}}</td>
+                        <td class="text-center">{{leaveRecord.annualAvailed}}</td>
+                        <td class="text-center">{{leaveRecord.otherAvailed}}</td>
+                        <td class="text-center">{{leaveRecord.annualLeft}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-secondary btn-sm">View</button>
+                        </td>
+                    </tr>
+                </tbody>
 
-        </table>
+            </table>
+        </div>
     </div>
 </div>

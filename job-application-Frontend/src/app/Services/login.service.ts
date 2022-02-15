@@ -25,10 +25,6 @@ export class LoginService {
     return localStorage.getItem('token')
   }
 
-  getCurrentUser(): Observable<any>{
-    return this.http.get(`${baseUrl}/current-user`)
-  }
-
   validate(): Observable<any> {
     return this.http.get(`${baseUrl}/validate`)
   }

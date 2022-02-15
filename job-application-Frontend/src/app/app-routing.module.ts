@@ -14,11 +14,11 @@ import { PasswordResetComponent } from './MyComponents/password-reset/password-r
 import { UsersComponent } from './MyComponents/users/users.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login ', pathMatch: 'full'},
-  { path:'applicant', component: ApplicationFormComponent },
-  { path: 'jobs', component: JobListingComponent},
-  { path: 'jobs/:id', component: JobDetailsComponent },
-  { path: 'create-new-job', component: CreateJobFormComponent, canActivate: [AuthGuard]},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  // { path:'applicant', component: ApplicationFormComponent },
+  // { path: 'jobs', component: JobListingComponent},
+  // { path: 'jobs/:id', component: JobDetailsComponent },
+  // { path: 'create-new-job', component: CreateJobFormComponent, canActivate: [AuthGuard]},
   { path: 'login', component:LoginFormComponent},
   {path: 'reset-password', component: PasswordResetComponent},
   {path: 'apply-leave', component: ApplyLeaveComponent, canActivate: [AuthGuard]},

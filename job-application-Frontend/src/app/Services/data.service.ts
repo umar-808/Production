@@ -11,8 +11,16 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getLeaves(): Observable<any> {
+  getCurrentUser(): Observable<any>{
+    return this.http.get(`${baseUrl}/current-user`)
+  }
+
+  getLeavesRecord(): Observable<any> {
     return this.http.get(`${baseUrl}/leaves`)
+  }
+
+  getLeaveRequests(): Observable<any> {
+    return this.http.get(`${baseUrl}/leave-requests`)
   }
 
   getManagers(): Observable<any> {
@@ -33,5 +41,13 @@ export class DataService {
 
   deleteManager(id): Observable<any> {
     return this.http.delete(`${baseUrl}/team-leads/${id}`)
+  }
+
+  deleteUser(id): Observable<any> {
+    return this.http.delete(`${baseUrl}/users/${id}`)
+  }
+
+  saveLeaveRequest(request) {
+    return this.http.post(`${baseUrl}/leave-requests`, request)
   }
 }

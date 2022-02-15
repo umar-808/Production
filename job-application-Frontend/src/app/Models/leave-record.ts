@@ -1,5 +1,4 @@
-export class Leave {
-    total: number
+export class LeaveRecord {
     user: any
     sickAvailed: number
     otherAvailed: number

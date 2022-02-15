@@ -2,34 +2,36 @@
     <b><div class="card-header justify-content-between">Users</div></b>
     <div class="card-body text-col">
         <p *ngIf="users.length<=0" class="text-center text-col">No record found</p>
-        <table *ngIf=" users.length>0" class="table col-md-9">
-            <thead class="heading text-col ">
-                <tr class="text-center">
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Date Registered</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Password Changed</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody class="text-col">
-                <tr *ngFor="let user of users; let i=index ">
-                    <td>{{user.name}}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.createdAt.substring(0, 10)}}</td>
-                    <td>{{user.designation.designation}}</td>
-                    <td *ngIf="user.status==1" style="color: green;">Active</td>
-                    <td *ngIf="user.status==0" style="color: red;">Inactive</td>
-                    <td *ngIf="user.isChangePass" style="color: green;">Yes</td>
-                    <td *ngIf="!user.isChangePass" style="color: red;">No</td>
-                    <td class="text-center ">
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                        <button class="btn btn-danger btn-sm">Edit</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive-sm">
+            <table *ngIf=" users.length>0" class="table table-bordered col-md-9">
+                <thead class="heading text-col ">
+                    <tr class="text-center">
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Date Registered</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Password Changed</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-col">
+                    <tr *ngFor="let user of users; let i=index ">
+                        <td>{{user.name}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.createdAt.substring(0, 10)}}</td>
+                        <td>{{user.designation.designation}}</td>
+                        <td *ngIf="user.status==1" style="color: green;">Active</td>
+                        <td *ngIf="user.status==0" style="color: red;">Inactive</td>
+                        <td *ngIf="user.isChangePass" style="color: green;">Yes</td>
+                        <td *ngIf="!user.isChangePass" style="color: red;">No</td>
+                        <td class="text-center">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <button class="btn btn-danger btn-sm">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

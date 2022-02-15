@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Login } from 'src/app/Models/login';
 import { User } from 'src/app/Models/user';
+import { DataService } from 'src/app/Services/data.service';
 import { LoginService } from 'src/app/Services/login.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginFormComponent implements OnInit {
 
   isValid = true
 
-  constructor(private loginService: LoginService, private router: Router, private titleService: Title) {
+  constructor(private loginService: LoginService, private router: Router, private titleService: Title, private dataService: DataService) {
     this.titleService.setTitle("Login")
    }
 
@@ -34,7 +35,7 @@ export class LoginFormComponent implements OnInit {
     this.loginService.login(this.userData).subscribe(
       response => {
         localStorage.setItem('token', response.token)
-        this.loginService.getCurrentUser().subscribe(
+        this.dataService.getCurrentUser().subscribe(
           res => {
             localStorage.setItem('user', JSON.stringify(res))
             this.currUser = res

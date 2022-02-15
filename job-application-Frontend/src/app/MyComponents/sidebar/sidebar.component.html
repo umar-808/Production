@@ -2,19 +2,19 @@
     <h4>Main</h4>
     <ul>
         <a routerLink="/users">
-            <li>Users</li>
+            <li [ngClass]="{'active': currPath()==='/users'}">Users</li>
         </a>
         <a routerLink="/managers">
-            <li>Managers</li>
+            <li [ngClass]="{'active': currPath()==='/managers'}">Managers</li>
         </a>
         <a routerLink="/apply-leave">
-            <li>Apply Leave</li>
+            <li [ngClass]="{'active': currPath()==='/apply-leave'}">Apply Leave</li>
         </a>
         <a routerLink="/leave-requests">
-            <li>Leave Requests</li>
+            <li [ngClass]="{'active': currPath()==='/leave-requests'}">Leave Requests</li>
         </a>
         <a routerLink="/leaves-record">
-            <li>Leaves Record</li>
+            <li [ngClass]="{'active': currPath()==='/leaves-record'}">Leaves Record</li>
         </a>
     </ul>
 </div>

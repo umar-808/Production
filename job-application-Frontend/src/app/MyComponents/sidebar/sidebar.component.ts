@@ -10,12 +10,13 @@ export class SidebarComponent implements OnInit {
 
   currUser = JSON.parse(localStorage.getItem('user'))
 
-  currPath:String
-  constructor() {
-    this.currPath = window.location.pathname
-  }
+  constructor() { }
 
   ngOnInit(): void {
+  }
+
+  currPath() {
+    return window.location.pathname
   }
 
 }
