@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { DataService } from 'src/app/Services/data.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,11 +9,16 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  currUser = JSON.parse(localStorage.getItem('user'))
+  currUser: any
 
-  constructor() { }
+  constructor( private dataService: DataService ) { }
 
   ngOnInit(): void {
+    this.dataService.getCurrentUser().subscribe(
+      res => {
+        this.currUser = res
+      }
+    )
   }
 
   currPath() {

@@ -2,7 +2,7 @@
     <b><div class="card-header justify-content-between">Users</div></b>
     <div class="card-body text-col">
         <p *ngIf="users.length<=0" class="text-center text-col">No record found</p>
-        <div class="table-responsive-sm">
+        <div class="table-responsive">
             <table *ngIf=" users.length>0" class="table table-bordered col-md-9">
                 <thead class="heading text-col ">
                     <tr class="text-center">
@@ -20,13 +20,16 @@
                         <td>{{user.name}}</td>
                         <td>{{user.username}}</td>
                         <td>{{user.createdAt.substring(0, 10)}}</td>
-                        <td>{{user.designation.designation}}</td>
+                        <td *ngIf="user.accessType == 1">Admin</td>
+                        <td *ngIf="user.accessType == 0">HOD</td>
+                        <td *ngIf="user.accessType == -1">Team Lead</td>
+                        <td *ngIf="user.accessType == -2">Team Member</td>
                         <td *ngIf="user.status==1" style="color: green;">Active</td>
                         <td *ngIf="user.status==0" style="color: red;">Inactive</td>
                         <td *ngIf="user.isChangePass" style="color: green;">Yes</td>
                         <td *ngIf="!user.isChangePass" style="color: red;">No</td>
-                        <td class="text-center">
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                        <td *ngIf="user.accessType !== 1" class="text-center">
+                            <button class="btn btn-danger btn-sm" (click)="deleteUser(user, user.id)">Delete</button>
                             <button class="btn btn-danger btn-sm">Edit</button>
                         </td>
                     </tr>

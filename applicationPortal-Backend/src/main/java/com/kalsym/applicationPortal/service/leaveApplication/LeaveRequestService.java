@@ -16,22 +16,26 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LeaveRequestService {
-
+    
     @Autowired
     private LeaveRequestRepository repository;
-
+    
     public LeaveRequest getLeaveRequestById(long id) {
         return repository.findById(id).get();
     }
-
+    
     public List<LeaveRequest> getLeaveRequests() {
         return repository.findAll();
     }
-
+    
     public LeaveRequest addLeaveRequest(LeaveRequest leaveRequest) {
         return repository.save(leaveRequest);
     }
-
+    
+    public LeaveRequest updateLeaveRequest(LeaveRequest leaveRequest) {
+        return repository.save(leaveRequest);
+    }
+    
     public void deleteLeaveRequest(long id) {
         repository.deleteById(id);
     }

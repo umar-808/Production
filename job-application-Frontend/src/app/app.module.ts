@@ -11,7 +11,7 @@ import { JobDetailsComponent } from './MyComponents/job-details/job-details.comp
 import { CreateJobFormComponent } from './MyComponents/create-job-form/create-job-form.component';
 import { ApplicationFormComponent } from './MyComponents/application-form/application-form.component';
 import { LoginFormComponent } from './MyComponents/login-form/login-form.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from '../app/Guards/auth.guard'
 import { LoginService } from './Services/login.service';
 import { FooterComponent } from './MyComponents/footer/footer.component';
 import { PasswordResetComponent } from './MyComponents/password-reset/password-reset.component';

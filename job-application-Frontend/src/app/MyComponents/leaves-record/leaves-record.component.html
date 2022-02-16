@@ -1,4 +1,4 @@
-<div class="card">
+<div *ngIf="view === false" class="card">
     <b><div class="card-header">Leaves Record</div></b>
     <div class="card-body text-col">
         <p *ngIf="leavesRecord.length<=0" class="text-center text-col">No record found</p>
@@ -27,12 +27,82 @@
                         <td class="text-center">{{leaveRecord.otherAvailed}}</td>
                         <td class="text-center">{{leaveRecord.annualLeft}}</td>
                         <td class="text-center">
-                            <button class="btn btn-secondary btn-sm">View</button>
+                            <button (click)="onView(leaveRecord)" class="btn btn-primary btn-sm">View</button>
                         </td>
                     </tr>
                 </tbody>
 
             </table>
         </div>
+    </div>
+</div>
+
+<div *ngIf="view === true" class="card">
+    <b><div class="card-header">Leaves Requests</div></b>
+    <div *ngIf="action === 0" class="card-body text-col">
+        <p *ngIf="leaveRequests.length <= 0" class="text-center text-col">No record found</p>
+        <div class="table-responsive">
+            <table *ngIf="leaveRequests.length > 0" class="table table-bordered col-md-9">
+                <thead class="heading text-col ">
+                    <tr class="text-center">
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Time Period</th>
+                        <th>Leave Date</th>
+                        <th>Return Date</th>
+                        <th>No. of Leaves</th>
+                        <th>Reason</th>
+                        <th>Type</th>
+                        <th>TL/HOD Comment</th>
+                        <th>Admin Comment</th>
+                        <th>Status</th>
+                        <th>Attachement</th>
+                        <th *ngIf="currUser.accessType === 1">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-col">
+                    <tr *ngFor="let leaveRequest of leaveRequests; let i=index">
+                        <td>{{leaveRequest.created}}</td>
+                        <td>{{leaveRequest.name}}</td>
+                        <td>{{leaveRequest.timePeriod}}</td>
+                        <td>{{leaveRequest.leaveDate}}</td>
+                        <td>{{leaveRequest.returnDate}}</td>
+                        <td>{{leaveRequest.leaves}}</td>
+                        <td>{{leaveRequest.reason}}</td>
+                        <td>{{leaveRequest.type}}</td>
+                        <td>{{leaveRequest.comment}}</td>
+                        <td>{{leaveRequest.adminComment}}</td>
+                        <td *ngIf="leaveRequest.status === 0" style="color: #3097d1;">Pending</td>
+                        <td *ngIf="leaveRequest.status === 1" style="color: green;">Approved by HOD</td>
+                        <td *ngIf="leaveRequest.status === 2" style="color: green;">Approved by Admin</td>
+                        <td *ngIf="leaveRequest.status === 3" style="color: red;">Disapproved by HOD</td>
+                        <td *ngIf="leaveRequest.status === 4" style="color: red;">Disapproved by Admin</td>
+                        <td>{{leaveRequest.attachment}}</td>
+                        <td *ngIf="leaveRequest.status === 0 && currUser.accessType === 1 && leaveRequest.name !== currUser.name" class="text-center">
+                            <button class="btn btn-primary btn-sm" (click)="approveClick(leaveRequest, leaveRequest.id)">Approve</button>
+                            <button class="btn btn-danger btn-sm" (click)="disApproveClick(leaveRequest, leaveRequest.id)">Disapprove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="action !== 0" class="card-body text-col">
+        <!-- <form #approveLeave="ngForm"> -->
+        <div class="form-section">
+            <label class="heading" for="comments">Reason</label>
+            <div class="col-md-6">
+                <textarea [(ngModel)]="comments" class="form-control" id="comments" name="comments">
+                </textarea>
+            </div>
+        </div>
+        <button *ngIf="action === 1" (click)="approve()" type="submit" class="btn btn-primary">
+            Approve
+        </button>
+        <button *ngIf="action === 2" (click)="disApprove()" type="submit" class="btn btn-danger">
+            Disapprove
+        </button>
+        <!-- </form> -->
     </div>
 </div>

@@ -25,3 +25,26 @@ button {
 tbody tr:hover {
     background-color: rgb(234, 244, 253);
 }
+
+.form-section {
+    background-color: rgb(234, 244, 253);
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 14px;
+}
+
+.heading {
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+textarea {
+    height: 120px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #3097d1;
+    border-color: #3097d1;
+}

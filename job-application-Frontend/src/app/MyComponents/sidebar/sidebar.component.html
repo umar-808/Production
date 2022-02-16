@@ -2,10 +2,10 @@
     <h4>Main</h4>
     <ul>
         <a routerLink="/users">
-            <li [ngClass]="{'active': currPath()==='/users'}">Users</li>
+            <li *ngIf="currUser.accessType == 1" [ngClass]="{'active': currPath()==='/users'}">Users</li>
         </a>
         <a routerLink="/managers">
-            <li [ngClass]="{'active': currPath()==='/managers'}">Managers</li>
+            <li *ngIf="currUser.accessType == 1" [ngClass]="{'active': currPath()==='/managers'}">Managers</li>
         </a>
         <a routerLink="/apply-leave">
             <li [ngClass]="{'active': currPath()==='/apply-leave'}">Apply Leave</li>

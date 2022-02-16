@@ -22,6 +22,10 @@ export class DataService {
   getLeaveRequests(): Observable<any> {
     return this.http.get(`${baseUrl}/leave-requests`)
   }
+  
+  getLeaveRequestById(id): Observable<any> {
+    return this.http.get(`${baseUrl}/users/${id}/leave-requests`)
+  }
 
   getManagers(): Observable<any> {
     return this.http.get(`${baseUrl}/team-leads`)
@@ -29,6 +33,10 @@ export class DataService {
 
   getUsers(): Observable<any> {
     return this.http.get(`${baseUrl}/users`)
+  }
+
+  getUserDepartment(id): Observable<any> {
+    return this.http.get(`${baseUrl}/users/${id}/department`)
   }
 
   getDepartment(id): Observable<any> {
@@ -49,5 +57,9 @@ export class DataService {
 
   saveLeaveRequest(request) {
     return this.http.post(`${baseUrl}/leave-requests`, request)
+  }
+
+  updateLeaveRequest(request, id) {
+    return this.http.put(`${baseUrl}/leave-requests/${id}`, request)
   }
 }

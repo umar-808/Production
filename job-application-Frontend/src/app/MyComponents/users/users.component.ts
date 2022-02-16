@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { User } from 'src/app/Models/user';
 import { DataService } from 'src/app/Services/data.service';
 import { LoginService } from 'src/app/Services/login.service';
 
@@ -12,35 +11,24 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class UsersComponent implements OnInit {
 
-  users: User[]
+  users: any = []
 
   constructor(private dataService: DataService, private titleService: Title, private loginService: LoginService, private router: Router) {
     this.titleService.setTitle("Users")
   }
 
   ngOnInit(): void {
-    this.dataService.getUsers().subscribe(
-      res => {
-        this.users = res
-        this.users.forEach(user => {
-          this.dataService.getDesignation(user.id).subscribe(
-            res => {
-              user.designation = res
-            },
-            err => {
-              console.log(err)
-            }
-          )
-        })
-      },
-      err => {
-        console.log(err)
-      }
-    )
 
     this.loginService.validate().subscribe(
       res => {
-        console.log(res)
+        this.dataService.getUsers().subscribe(
+          res => {
+            this.users = res
+          },
+          err => {
+            console.log(err)
+          }
+        )
       },
       err => {
         this.loginService.logout()
@@ -49,7 +37,11 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(user, userId) {
-    
+    let answer = window.confirm('Are you sure?')
+    if (answer) {
+      this.dataService.deleteUser(userId).subscribe()
+      const index = this.users.indexOf(user);
+      this.users.splice(index, 1);
+    }
   }
-
 }

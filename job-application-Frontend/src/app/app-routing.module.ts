@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './../app/Guards/auth.guard';
+import { AdminGuard } from './Guards/admin.guard';
 import { ApplicationFormComponent } from './MyComponents/application-form/application-form.component';
 import { ApplyLeaveComponent } from './MyComponents/apply-leave/apply-leave.component';
 import { CreateJobFormComponent } from './MyComponents/create-job-form/create-job-form.component';
@@ -23,8 +24,8 @@ const routes: Routes = [
   {path: 'reset-password', component: PasswordResetComponent},
   {path: 'apply-leave', component: ApplyLeaveComponent, canActivate: [AuthGuard]},
   {path: 'leaves-record', component: LeavesRecordComponent, canActivate: [AuthGuard]},
-  {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
-  {path: 'managers', component: ManagersComponent, canActivate: [AuthGuard]},
+  {path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'managers', component: ManagersComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'leave-requests', component: LeaveRequestsComponent, canActivate: [AuthGuard]}
 ];
 

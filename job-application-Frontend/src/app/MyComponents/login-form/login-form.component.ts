@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Login } from 'src/app/Models/login';
-import { User } from 'src/app/Models/user';
 import { DataService } from 'src/app/Services/data.service';
 import { LoginService } from 'src/app/Services/login.service';
 
@@ -16,8 +15,6 @@ export class LoginFormComponent implements OnInit {
   userData: Login = new Login()
 
   errorMessage = ''
-
-  currUser: any
 
   isValid = true
 
@@ -35,14 +32,6 @@ export class LoginFormComponent implements OnInit {
     this.loginService.login(this.userData).subscribe(
       response => {
         localStorage.setItem('token', response.token)
-        this.dataService.getCurrentUser().subscribe(
-          res => {
-            localStorage.setItem('user', JSON.stringify(res))
-            this.currUser = res
-            // console.log(JSON.parse(localStorage.getItem('user')).name)
-            console.log(this.currUser.name)
-          }
-        )
         this.router.navigate(['/apply-leave'])
       },
       error => {
@@ -56,5 +45,4 @@ export class LoginFormComponent implements OnInit {
       }
     )   
   }
-
 }

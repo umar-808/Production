@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,15 +27,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin("*")
 public class LeaveRequestController {
-
+    
     @Autowired
     private LeaveRequestService service;
-
+    
     @GetMapping("/leave-requests")
     public List<LeaveRequest> getLeaveRequests() {
         return service.getLeaveRequests();
     }
-
+    
     @GetMapping("/leave-requests/{id}")
     public ResponseEntity<LeaveRequest> getDesignationById(@PathVariable long id) {
         try {
@@ -43,12 +44,21 @@ public class LeaveRequestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    
     @PostMapping("/leave-requests")
     public LeaveRequest addLeaveRequest(@RequestBody LeaveRequest leaveRequest) {
         return service.addLeaveRequest(leaveRequest);
     }
-
+    
+    @PutMapping("/leave-requests/{id}")
+    public LeaveRequest updateLeaveRequest(@PathVariable long id, @RequestBody LeaveRequest leaveRequest) {
+        LeaveRequest lr = service.getLeaveRequestById(id);
+        lr.setStatus(leaveRequest.getStatus());
+        lr.setAdminComment(leaveRequest.getAdminComment());
+        lr.setComment(leaveRequest.getComment());
+        return service.updateLeaveRequest(lr);
+    }
+    
     @DeleteMapping("/leave-requests/{id}")
     public void deleteLeaveRequest(@PathVariable long id) {
         service.deleteLeaveRequest(id);
