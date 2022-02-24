@@ -1,0 +1,94 @@
+<div class="card main">
+    <b><div class="card-header">Job Application Form</div></b>
+
+    <div class="card-body text-col">
+        <div class="col-md-6 needs-validation">
+            <form #applicationForm="ngForm" (ngSubmit)="addApplicant()" *ngIf="!submitted" style="padding: 1rem;">
+                <div class="form-section">
+                    <h5>Personal Details</h5>
+                    <div class="form-group">
+                        <label class="required" for="fullName">Full Name</label>
+                        <input type="text" [(ngModel)]="applicant.name" class="form-control" id="fullName" name="name" placeholder="Full Name" #name="ngModel" required>
+                        <span [hidden]="name.valid || !name.touched" style="color: red;">
+                            Name is required
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="email">Email</label>
+                        <input type="email" [(ngModel)]="applicant.email" class="form-control" id="email" name="email" placeholder="Email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        <span [hidden]="email.valid || !email.touched" style="color: red;">
+                    <div *ngIf="email.errors?.['required']">
+                        Email is required
+                    </div>
+                    <div *ngIf="!email.errors?.['required']">
+                        Invalid Input
+                    </div>
+                </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="phone">Phone Number</label>
+                        <input type="tel" [(ngModel)]="applicant.phone" class="form-control" id="phone" name="phone" placeholder="Phone Number" #phone="ngModel" pattern="[0-9]{10,11}" required>
+                        <span [hidden]="phone.valid || !phone.touched" style="color: red;">
+                    <div *ngIf="phone.errors?.['required']">
+                        Phone Number is required
+                    </div>
+                    <div *ngIf="!phone.errors?.['required']">
+                        Invalid Input
+                    </div>
+                </span>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h5>Academic</h5>
+                    <div class="form-group">
+                        <label class="required" for="degree">Degree</label>
+                        <input type="text" [(ngModel)]="applicant.degree" class="form-control" id="degree" name="degree" placeholder="Degree" #degree="ngModel" required>
+                        <span [hidden]="degree.valid || !degree.touched" style="color: red;">
+                            Degree is required
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="school">School Name</label>
+                        <input type="text" [(ngModel)]="applicant.school" class="form-control" id="school" name="school" placeholder="School" #school="ngModel" required>
+                        <span [hidden]="school.valid || !school.touched" style="color: red;">
+                        School Name is required
+                    </span>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h5>Experience</h5>
+                    <div class="form-group">
+                        <label class="required" for="achievements">Achievements</label>
+                        <textarea class="form-control" [(ngModel)]="applicant.achievements" id="achievements" name="achievements" placeholder="Achievements" #achievements="ngModel" required>
+                        </textarea>
+                        <span [hidden]="achievements.valid || !achievements.touched" style="color: red;">
+                            Achievements are required
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="years">Total Years</label>
+                        <input type="number" min="0" [(ngModel)]="applicant.years" class="form-control" id="years" name="years" placeholder="Total Years" #years="ngModel" required>
+                        <span [hidden]="years.valid || !years.touched" style="color: red;">
+                            Total Years are required
+                        </span>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="form-group">
+                        <label class="required" for="file">Resume (Maximum Size: 2MB)</label>
+                        <input type="file" class="form-control" id="file" [(ngModel)]="selectedFile" name="file" #file="ngModel" (change)="onChange($event)" required>
+                        <span [hidden]="file.valid || !file.touched" style="color: red;">
+                            Resume is Required
+                        </span>
+                    </div>
+                </div>
+                <button type="submit" [disabled]="!applicationForm.valid" class="btn btn-primary">Submit Application</button>
+            </form>
+
+            <div *ngIf="submitted" style="padding: 1rem;">
+                <h4>Jop Application Submiitted Successfully</h4>
+                <a routerLink="/jobs"><button class="btn btn-primary">Thank You</button></a>
+            </div>
+        </div>
+    </div>
+</div>

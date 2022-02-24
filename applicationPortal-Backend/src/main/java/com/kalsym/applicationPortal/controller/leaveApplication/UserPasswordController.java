@@ -37,7 +37,7 @@ public class UserPasswordController {
     }
 
     @GetMapping("/user-passwords/{id}")
-    public ResponseEntity<UserPassword> getDesignationById(@PathVariable long id) {
+    public ResponseEntity<UserPassword> getUserPasswordById(@PathVariable long id) {
         try {
             return new ResponseEntity<>(service.getUserPasswordById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {

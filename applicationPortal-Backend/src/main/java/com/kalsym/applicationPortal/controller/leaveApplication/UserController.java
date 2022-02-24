@@ -11,14 +11,18 @@ import com.kalsym.applicationPortal.model.leaveApplication.User;
 import com.kalsym.applicationPortal.service.leaveApplication.UserService;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,13 +37,16 @@ public class UserController {
     @Autowired
     private UserService service;
 
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
     @GetMapping("/users")
     public List<User> getUsers() {
         return service.getUsers();
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> getDesignationById(@PathVariable long id) {
+    public ResponseEntity<User> getUserById(@PathVariable long id) {
         try {
             return new ResponseEntity<>(service.getUserById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {
@@ -64,7 +71,15 @@ public class UserController {
 
     @PostMapping("/users")
     public User addUser(@RequestBody User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
         return service.addUser(user);
+    }
+
+    @PutMapping("/users/{id}/reset-password")
+    public User resetPassword(@PathVariable long id, @RequestBody User user) {
+        User temp = service.getUserById(id);
+        temp.setPassword(encoder.encode(user.getPassword()));
+        return service.addUser(temp);
     }
 
     @DeleteMapping("/users/{id}")

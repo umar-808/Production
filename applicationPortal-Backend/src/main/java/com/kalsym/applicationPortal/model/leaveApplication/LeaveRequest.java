@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.ColumnDefault;
 
 /**
  *
@@ -67,9 +66,6 @@ public class LeaveRequest {
     @Column(length = 100)
     private String attachment;
 
-    @Column(columnDefinition = "INT(4) DEFAULT 92", nullable = false)
-    private int countryCode;
-
     @Column(name = "time_period", length = 10)
     private String timePeriod;
 
@@ -81,7 +77,7 @@ public class LeaveRequest {
     public LeaveRequest() {
     }
 
-    public LeaveRequest(long id, Date created, String name, Date leaveDate, Date returnDate, int leaves, String reason, int status, String comment, String type, String adminComment, Date updatedAt, long lineManagerId, String attachment, int countryCode, String timePeriod, User user) {
+    public LeaveRequest(long id, Date created, String name, Date leaveDate, Date returnDate, int leaves, String reason, int status, String comment, String type, String adminComment, Date updatedAt, long lineManagerId, String attachment, String timePeriod, User user) {
         this.id = id;
         this.created = created;
         this.name = name;
@@ -96,7 +92,6 @@ public class LeaveRequest {
         this.updatedAt = updatedAt;
         this.lineManagerId = lineManagerId;
         this.attachment = attachment;
-        this.countryCode = countryCode;
         this.timePeriod = timePeriod;
         this.user = user;
     }
@@ -211,14 +206,6 @@ public class LeaveRequest {
 
     public void setAttachment(String attachment) {
         this.attachment = attachment;
-    }
-
-    public int getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(int countryCode) {
-        this.countryCode = countryCode;
     }
 
     public String getTimePeriod() {

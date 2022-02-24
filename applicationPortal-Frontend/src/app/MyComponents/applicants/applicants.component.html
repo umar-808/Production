@@ -1,0 +1,43 @@
+<div class="card">
+    <b><div class="card-header justify-content-between">Applicants</div></b>
+    <div class="card-body text-col">
+        <div class="button">
+        </div>
+        <p *ngIf="applicants.length<=0" class="text-center text-col">No record found</p>
+
+        <div class=" table-responsive ">
+            <table *ngIf=" applicants.length>0" class="table table-bordered col-md-9">
+                <thead class="heading text-col ">
+                    <tr class="text-center">
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Degree</th>
+                        <th>School</th>
+                        <th>Achievements</th>
+                        <th>Experience</th>
+                        <th>Attachment</th>
+                    </tr>
+                </thead>
+                <tbody class="text-col">
+                    <tr *ngFor="let applicant of applicants; let i=index ">
+                        <td>{{applicant.name}}</td>
+                        <td>{{applicant.email}}</td>
+                        <td>{{applicant.phone}}</td>
+                        <td>{{applicant.degree}}</td>
+                        <td>{{applicant.school}}</td>
+                        <td>{{applicant.achievements}}</td>
+                        <td>{{applicant.years}}</td>
+                        <td style="color: #3097d1;" (click)="download(applicant.file.id, applicant.file.name)"><a>{{applicant.file.name}}</a></td>
+
+                        <!-- <td *ngIf="user.accessType !== 1" class="text-center">
+                            <button class="btn btn-danger btn-sm" (click)="reset(user, user.id)">Reset</button>
+                            <button class="btn btn-danger btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm" (click)="deleteUser(user, user.id)">Delete</button>
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

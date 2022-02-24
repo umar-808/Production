@@ -1,0 +1,19 @@
+<div class="card main">
+    <b><div class="card-header">Jobs</div></b>
+
+    <div class="card-body text-col">
+        <div class="col-md-8">
+            <h5 *ngIf="jobs.length < 1" style="text-align: center;">No Jobs found</h5>
+            <div *ngFor="let job of jobs; index as i">
+                <div *ngIf="i % 2 == 0" class="row">
+                    <div class="col">
+                        <app-job [job]="jobs[i]"></app-job>
+                    </div>
+                    <div *ngIf="i+1 < jobs.length" class="col">
+                        <app-job [job]="jobs[i+1]"></app-job>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

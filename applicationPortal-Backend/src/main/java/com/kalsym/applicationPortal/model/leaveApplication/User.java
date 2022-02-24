@@ -81,9 +81,6 @@ public class User {
     @Column(nullable = true)
     private long tlId;
 
-    @Column(columnDefinition = "INT(2) DEFAULT 92", nullable = false)
-    private int countryCode;
-
     @ManyToOne
     @JoinColumn(name = "prefix_id", nullable = false, referencedColumnName = "prefix_id")
     @JsonBackReference(value = "userPassword")
@@ -106,7 +103,7 @@ public class User {
     public User() {
     }
 
-    public User(long id, String name, String username, String password, int accessType, int status, String rememberToken, boolean isChangePass, Timestamp createdAt, Timestamp updatedAt, boolean wrongPassCount, boolean isLock, Timestamp lockExpired, String email, long tlId, int countryCode, UserPassword userPassword, Designation designation, Department department, List<LeaveRequest> leaveRequests) {
+    public User(long id, String name, String username, String password, int accessType, int status, String rememberToken, boolean isChangePass, Timestamp createdAt, Timestamp updatedAt, boolean wrongPassCount, boolean isLock, Timestamp lockExpired, String email, long tlId, UserPassword userPassword, Designation designation, Department department, List<LeaveRequest> leaveRequests) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -122,7 +119,6 @@ public class User {
         this.lockExpired = lockExpired;
         this.email = email;
         this.tlId = tlId;
-        this.countryCode = countryCode;
         this.userPassword = userPassword;
         this.designation = designation;
         this.department = department;
@@ -247,14 +243,6 @@ public class User {
 
     public void setTlId(long tlId) {
         this.tlId = tlId;
-    }
-
-    public int getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(int countryCode) {
-        this.countryCode = countryCode;
     }
 
     public UserPassword getUserPassword() {

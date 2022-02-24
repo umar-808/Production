@@ -60,8 +60,8 @@ public class BranchController {
     }
 
     @PostMapping("/branches")
-    public Branch saveBranch(@RequestBody Branch branch) {
-        return branchService.saveBranch(branch);
+    public Branch addBranch(@RequestBody Branch branch) {
+        return branchService.addBranch(branch);
     }
 
     @DeleteMapping("/branches/{id}")

@@ -36,7 +36,7 @@ public class PasswordResetController {
     }
 
     @GetMapping("/password-resets/{id}")
-    public ResponseEntity<PasswordReset> getDesignationById(@PathVariable int id) {
+    public ResponseEntity<PasswordReset> getPasswordResetById(@PathVariable int id) {
         try {
             return new ResponseEntity<>(service.getPasswordResetById(id), HttpStatus.OK);
         } catch (NoSuchElementException e) {

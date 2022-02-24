@@ -1,0 +1,44 @@
+.col-md-6 {
+    margin: auto;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+form {
+    padding: 1rem;
+}
+
+.form-section {
+    padding-bottom: 1rem;
+}
+
+.form-group {
+    padding-bottom: 0.25rem;
+}
+
+textarea.ng-touched.ng-invalid,
+input.ng-touched.ng-invalid {
+    border: 1px solid red;
+}
+
+.required:after {
+    content: "*";
+    color: red;
+}
+
+.main {
+    font-family: "Helvetica Neue", Helvetica, Arial, serif;
+    box-shadow: 0 0 5px 2px rgb(240, 240, 240);
+}
+
+.card-header {
+    background-color: #3097d1;
+    color: #fff;
+    text-align: center;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #3097d1;
+    border-color: #3097d1;
+}

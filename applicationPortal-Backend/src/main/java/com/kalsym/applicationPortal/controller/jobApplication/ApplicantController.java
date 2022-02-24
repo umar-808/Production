@@ -5,6 +5,7 @@
 package com.kalsym.applicationPortal.controller.jobApplication;
 
 import com.kalsym.applicationPortal.model.jobApplication.Applicant;
+import com.kalsym.applicationPortal.model.jobApplication.File;
 import com.kalsym.applicationPortal.service.jobApplication.ApplicantService;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -26,15 +27,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin("*")
 public class ApplicantController {
-    
+
     @Autowired
     private ApplicantService applicantService;
-    
+
     @GetMapping("/applicants")
     public List<Applicant> getAll() {
         return applicantService.getApplicants();
     }
-    
+
     @GetMapping("/applicants/{id}")
     public ResponseEntity<Applicant> getApplicantById(@PathVariable Long id) {
         try {
@@ -43,12 +44,17 @@ public class ApplicantController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
-    @PostMapping("/applicants")
-    public void saveApplicant(@RequestBody Applicant applicant) {
-        applicantService.saveApplicant(applicant);
+
+    @GetMapping("/applicants/{id}/file")
+    public File getFile(@PathVariable long id) {
+        return applicantService.getApplicantById(id).getFile();
     }
-    
+
+    @PostMapping("/applicants")
+    public void addApplicant(@RequestBody Applicant applicant) {
+        applicantService.addApplicant(applicant);
+    }
+
     @DeleteMapping("/applicants/{id}")
     public void deleteApplicant(@PathVariable Long id) {
         applicantService.deleteApplicantById(id);

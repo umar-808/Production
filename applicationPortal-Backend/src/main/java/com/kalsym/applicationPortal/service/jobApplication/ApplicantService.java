@@ -20,7 +20,7 @@ public class ApplicantService {
     @Autowired
     private ApplicantRepository repository;
     
-    public Applicant saveApplicant(Applicant applicant) {
+    public Applicant addApplicant(Applicant applicant) {
         return repository.save(applicant);
     }
     

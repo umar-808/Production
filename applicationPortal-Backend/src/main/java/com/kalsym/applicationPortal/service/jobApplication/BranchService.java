@@ -20,7 +20,7 @@ public class BranchService {
     @Autowired
     private BranchRepository repository;
     
-    public Branch saveBranch(Branch branch) {
+    public Branch addBranch(Branch branch) {
         return repository.save(branch);
     }
     

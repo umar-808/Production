@@ -55,7 +55,7 @@ public class DesignationController {
     }
 
     @DeleteMapping("/designations/{id}")
-    public void deleteDesignations(@PathVariable long id) {
+    public void deleteDesignation(@PathVariable long id) {
         service.deleteDesignation(id);
     }
 }

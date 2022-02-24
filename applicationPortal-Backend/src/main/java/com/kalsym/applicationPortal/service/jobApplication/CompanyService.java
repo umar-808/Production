@@ -20,7 +20,7 @@ public class CompanyService {
     @Autowired
     private CompanyRepository repository;
     
-    public Company saveCompany(Company company) {
+    public Company addCompany(Company company) {
         return repository.save(company);
     }
     

@@ -50,7 +50,7 @@ public class LeaveController {
     }
 
     @DeleteMapping("/leaves/{id}")
-    public void deleteLeaves(@PathVariable long id) {
+    public void deleteLeave(@PathVariable long id) {
         service.deleteLeave(id);
     }
 }

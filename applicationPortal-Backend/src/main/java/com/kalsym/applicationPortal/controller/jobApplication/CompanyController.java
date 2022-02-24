@@ -44,8 +44,8 @@ public class CompanyController {
     }
 
     @PostMapping("/companies")
-    public Company saveCompany(@RequestBody Company company) {
-        return companyService.saveCompany(company);
+    public Company addCompany(@RequestBody Company company) {
+        return companyService.addCompany(company);
     }
 
     @DeleteMapping("/companies/{id}")

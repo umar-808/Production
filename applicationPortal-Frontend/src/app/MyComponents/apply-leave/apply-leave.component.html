@@ -1,0 +1,109 @@
+<div class="card main">
+    <b><div class="card-header">Leave Application Form</div></b>
+    <div class="card-body text-col">
+        <div *ngIf="submitted" class="text-center">
+            <span>{{message}}</span>
+        </div>
+        <form #applyLeave="ngForm" (submit)="submit()" ngNativeValidate>
+            <div class="form-section">
+                <div class="heading">
+                    AM / PM/ Full Day *
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="timePeriod" class="form-check-input" type="radio" name="time" value="AM" id="AM" required>
+                    <label class="form-check-label" for="AM">
+                        AM
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="timePeriod" class="form-check-input" type="radio" name="time" value="PM" id="PM" required>
+                    <label class="form-check-label" for="PM">
+                        PM
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="timePeriod" class="form-check-input" type="radio" name="time" value="Full Day" id="fullDay" required>
+                    <label class="form-check-label" for="fullDay">
+                        Full Day
+                    </label>
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="heading">
+                            Leave Date
+                        </div>
+                        <input [(ngModel)]="leaveDate" name="leaveDate" type="date" style="width: 100%; padding: 0.25rem;" required>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="heading">
+                            Return Date
+                        </div>
+                        <input [(ngModel)]="returnDate" [disabled]="timePeriod !== 'Full Day'" type="date" name="returnDate" style="width: 100%; padding: 0.25rem;" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="heading">
+                    Type of Leave *
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="type" [(ngModel)]="type" class="form-check-input" value="Annual leave" type="radio" name="type" id="annual" checked required>
+                    <label class="form-check-label" for="annual">
+                        Annual leave
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="type" class="form-check-input" type="radio" value="Leave on Compassionate Grounds (Nuclear family)" name="type" id="nuclearFamily" required>
+                    <label class="form-check-label" for="nuclearFamily">
+                        Leave on Compassionate Grounds (Nuclear family)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="type" class="form-check-input" type="radio" value="Sick leave (Illness or Injury)" name="type" id="sick" required>
+                    <label class="form-check-label" for="sick">
+                        Sick leave (Illness or Injury)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="type" class="form-check-input" type="radio" value="Jury duty or legal leave" name="type" id="jury" required>
+                    <label class="form-check-label" for="jury">
+                        Jury duty or legal leave
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="type" class="form-check-input" type="radio" value="Leave without pay" name="type" id="withoutPay" required>
+                    <label class="form-check-label" for="withoutPay">
+                        Leave without pay
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="type" class="form-check-input" type="radio" value="Other" name="type" id="other" required>
+                    <label class="form-check-label" for="other">
+                        Other: <input id="otherLeave" name="otherLeave" type="text">
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <label class="heading" for="reason">Reason</label>
+                <div class="col-md-6">
+                    <textarea [(ngModel)]="reason" class="form-control" id="reason" name="reason" required>
+                    </textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group">
+                    <label class="required" for="file">Attachment (Maximum Size: 2MB)</label>
+                    <input type="file" class="form-control" id="file" [(ngModel)]="selectedFile" name="file" #file="ngModel" (change)="onChange($event)" [required]="type === 'Annual leave'">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="card main">
+    <b><div class="card-header">Register</div></b>
+    <div class="card-body text-col">
+        <div class="col-md-6 needs-validation">
+            <form #registerForm="ngForm" (submit)="register()" ngNativeValidate>
+                <div class="form-group row">
+                    <label for="name" class="col-md-4 col-form-label text-md-right text-col">Name</label>
+                    <div class="col-md-8">
+                        <input type="text" id="name" [(ngModel)]="name" class="form-control" name="name" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="email" class="col-md-4 col-form-label text-md-right text-col">Email</label>
+                    <div class="col-md-8">
+                        <input type="email" id="email" [(ngModel)]="email" class="form-control" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="password" class="col-md-4 col-form-label text-md-right text-col">Password</label>
+                    <div class="col-md-8">
+                        <input type="password" id="password" [(ngModel)]="password" class="form-control" name="password" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="confirm" class="col-md-4 col-form-label text-md-right text-col">Confirm Password</label>
+                    <div class="col-md-8">
+                        <input type="password" [(ngModel)]="confirmPassword" id="confirm" class="form-control" name="confirm" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="department" class="col-md-4 col-form-label text-md-right text-col">Department</label>
+                    <div class="col-md-8">
+                        <select id="department" [(ngModel)]="department" name="department" class="form-select" required>
+                            <option *ngFor=" let dep of departments" [value]="dep.id">{{dep.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="designation" class="col-md-4 col-form-label text-md-right text-col">Designation</label>
+                    <div class="col-md-8">
+                        <select id="designation" [(ngModel)]="designation" name="designation" class="form-select" required>
+                            <option *ngFor=" let des of designations" [value]="des.id">{{des.designation}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="role" class="col-md-4 col-form-label text-md-right text-col">Role</label>
+                    <div class="col-md-8">
+                        <select id="role" name="role" [(ngModel)]="role" class="form-select" required>
+                            <option>Admin</option>
+                            <option>HOD</option>
+                            <option>TL</option>
+                            <option>Team Member</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lead" class="col-md-4 col-form-label text-md-right text-col">Team Lead</label>
+                    <div class="col-md-8">
+                        <select id="lead" name="lead" [(ngModel)]="teamLead" class="form-select" required>
+                            <option *ngFor=" let tl of teamLeads" [value]="tl.id">{{tl.name}}</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="prefix" class="col-md-4 col-form-label text-md-right text-col">Prefix Type</label>
+                    <div class="col-md-8">
+                        <select id="prefix" [(ngModel)]="prefixType" name="prefix" class="form-select" required>
+                            <option *ngFor="let prefix of prefixes" [value]="prefix.prefix_id">{{prefix.prefix}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-8 offset-md-4">
+                        <span [hidden]="error === null" style="color: red;">{{error}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-8 offset-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            Register
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
